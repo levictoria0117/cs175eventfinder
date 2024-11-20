@@ -1,17 +1,13 @@
 package edu.sjsu.android.localeventfinder;
 
 import android.os.Bundle;
-
-import androidx.activity.EdgeToEdge;
+import android.util.TypedValue;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
-
 import com.google.android.material.tabs.TabLayout;
-
 import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
@@ -40,15 +36,40 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setupTabIcons() {
-        Objects.requireNonNull(tabLayout.getTabAt(0)).setIcon(R.drawable.home_icon);
-        Objects.requireNonNull(tabLayout.getTabAt(1)).setIcon(R.drawable.favorites_icon);
-        Objects.requireNonNull(tabLayout.getTabAt(2)).setIcon(R.drawable.tickets_icon);
-        Objects.requireNonNull(tabLayout.getTabAt(3)).setIcon(R.drawable.account_icon);
+        int iconSizeInDp = 70;
+
+        // Convert dp to pixels
+        int iconSizeInPx = (int) TypedValue.applyDimension(
+                TypedValue.COMPLEX_UNIT_DIP,
+                iconSizeInDp,
+                getResources().getDisplayMetrics()
+        );
+
+        int[] tabIcons = {
+                R.drawable.home_icon,
+                R.drawable.favorites_icon,
+                R.drawable.tickets_icon,
+                R.drawable.account_icon
+        };
 
         for (int i = 0; i < tabLayout.getTabCount(); i++) {
             TabLayout.Tab tab = tabLayout.getTabAt(i);
             if (tab != null) {
                 tab.setText(null);
+                tab.setIcon(tabIcons[i]);
+
+                // Get the LinearLayout that contains the ImageView
+                LinearLayout layout = (LinearLayout) tab.view;
+                ImageView imageView = (ImageView) layout.getChildAt(0);
+
+                // Set custom size for the ImageView
+                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                        iconSizeInPx,
+                        iconSizeInPx
+                );
+                params.setMargins(0, 10, 0, 10); // Add some vertical padding
+                imageView.setLayoutParams(params);
+                imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
             }
         }
     }
