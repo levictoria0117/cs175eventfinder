@@ -23,11 +23,11 @@
     <string name="event_location_5">Stanford Stadium, Palo Alto</string>
 
     <!-- Placeholder Dates -->
-    <string name="event_date_1">Dec 15, 2024 • 7:00 PM</string>
-    <string name="event_date_2">Dec 20, 2024 • 7:30 PM</string>
-    <string name="event_date_3">Dec 25, 2024 • 12:00 PM</string>
-    <string name="event_date_4">Jan 5, 2025 • 10:00 AM</string>
-    <string name="event_date_5">Jan 15, 2025 • 8:00 PM</string>
+    <string name="event_date_1">Dec 15, 2024</string>
+    <string name="event_date_2">Dec 20, 2024</string>
+    <string name="event_date_3">Dec 25, 2024</string>
+    <string name="event_date_4">Jan 05, 2025</string>
+    <string name="event_date_5">Jan 15, 2025</string>
 
     <!-- Placeholder Descriptions -->
     <string name="event_desc_1">Experience Taylor Swift\'s record-breaking Eras Tour, featuring songs from all of her albums in this spectacular 3-hour show.</string>

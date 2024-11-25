@@ -24,11 +24,11 @@ public class FavoritesFragment extends Fragment implements OnEventCardClickedLis
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         favoriteEventList = new ArrayList<>();
-        favoriteEventList.add(new Event(R.drawable.account_icon, R.string.event_name_1, R.string.event_date_1, R.string.event_location_1, R.string.event_desc_1));
-        favoriteEventList.add(new Event(R.drawable.account_icon, R.string.event_name_2, R.string.event_date_2, R.string.event_location_2, R.string.event_desc_2));
-        favoriteEventList.add(new Event(R.drawable.account_icon, R.string.event_name_3, R.string.event_date_3, R.string.event_location_3, R.string.event_desc_3));
-        favoriteEventList.add(new Event(R.drawable.account_icon, R.string.event_name_4, R.string.event_date_4, R.string.event_location_4, R.string.event_desc_4));
-        favoriteEventList.add(new Event(R.drawable.account_icon, R.string.event_name_5, R.string.event_date_5, R.string.event_location_5, R.string.event_desc_5));
+        favoriteEventList.add(new Event(R.drawable.event_temp_background, R.string.event_name_1, R.string.event_location_1, R.string.event_date_1, R.string.event_desc_1));
+        favoriteEventList.add(new Event(R.drawable.event_temp_background, R.string.event_name_2, R.string.event_location_2, R.string.event_date_2, R.string.event_desc_2));
+        favoriteEventList.add(new Event(R.drawable.event_temp_background, R.string.event_name_3, R.string.event_location_3, R.string.event_date_3, R.string.event_desc_3));
+        favoriteEventList.add(new Event(R.drawable.event_temp_background, R.string.event_name_4, R.string.event_location_4, R.string.event_date_4, R.string.event_desc_4));
+        favoriteEventList.add(new Event(R.drawable.event_temp_background, R.string.event_name_5, R.string.event_location_5, R.string.event_date_5, R.string.event_desc_5));
     }
 
     @Override
