@@ -14,102 +14,41 @@
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp">
 
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="140dp"
+            app:srcCompat="@drawable/AroundUlogo" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Sign In"
+            android:text="Find what's happening, right Around U!"
             android:textStyle="bold"
             android:textAlignment="center"
-            android:textColor="@color/primary"
-            android:textSize="50sp"
-            android:layout_marginTop="140dp"/>
+            android:textColor="@color/black"
+            android:textSize="32sp"
+            android:layout_marginTop="80dp"/>
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center"
-            android:layout_marginTop="8dp"
-            android:layout_gravity="center">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="New user?"
-                android:textColor="@color/black"
-                android:textSize="15sp"/>
-
-            <Button
-                android:id="@+id/button_sign_in"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Create an account"
-                android:textColor="@color/primary"
-                android:background="@android:color/transparent"
-                android:textSize="15sp"/>
-        </LinearLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/username_email"
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Username or Email"
-            android:layout_marginTop="32dp">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="16dp"
-                android:textColor="@color/black"
-                android:background="@drawable/rounded_edges"
-                android:inputType="text"
-                android:singleLine="true"/>
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/password"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Password"
-            android:layout_marginTop="16dp">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="16dp"
-                android:textColor="@color/black"
-                android:background="@drawable/rounded_edges"
-                android:inputType="textPassword"
-                android:singleLine="true"/>
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <CheckBox
-            android:id="@+id/checkBox"
-            android:layout_width="212dp"
-            android:layout_height="wrap_content"
-            android:buttonTint="@color/primary"
-            android:text="Keep me signed in" />
+            android:text="Discover events, places, and people in your neighborhood. Connect with your local community like never before."
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:layout_marginTop="25dp"/>
 
         <Button
             android:id="@+id/signin_button"
             android:layout_width="match_parent"
             android:layout_height="63dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="32dp"
             android:background="@drawable/rounded_button"
-            android:text="Sign In"
+            android:text="Explore Now"
             android:textColor="@color/white"
             android:textSize="20sp" />
-
-        <Button
-            android:id="@+id/guest_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:background="@android:color/transparent"
-            android:text="Continue as a Guest"
-            android:textColor="@color/black"
-            android:textSize="15sp" />
 
     </LinearLayout>
 </ScrollView>
