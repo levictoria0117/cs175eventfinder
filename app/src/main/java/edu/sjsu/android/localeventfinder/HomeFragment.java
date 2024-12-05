@@ -44,13 +44,13 @@ public class HomeFragment extends Fragment {
 
         moreEventsRecyclerView = view.findViewById(R.id.more_events_recycler);
         moreEventsRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        moreEventsAdapter = new MyAdapter(moreEventsList);
+        moreEventsAdapter = new MyAdapter(moreEventsList, false);
         moreEventsRecyclerView.setAdapter(moreEventsAdapter);
 
         nearestEventsRecyclerView = view.findViewById(R.id.nearest_events_recycler);
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2, LinearLayoutManager.HORIZONTAL, false);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 1, LinearLayoutManager.HORIZONTAL, false);
         nearestEventsRecyclerView.setLayoutManager(gridLayoutManager);
-        nearestEventsAdapter = new MyAdapter(nearestEventsList);
+        nearestEventsAdapter = new MyAdapter(nearestEventsList, true);
         nearestEventsRecyclerView.setAdapter(nearestEventsAdapter);
 
         return view;

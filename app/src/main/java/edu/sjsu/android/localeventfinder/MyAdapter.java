@@ -13,9 +13,12 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
     private final ArrayList<Event> eventList;
     private OnEventCardClickedListener clickListener;
+    private boolean isLargeCard = false;
 
-    public MyAdapter(ArrayList<Event> eventList) {
+
+    public MyAdapter(ArrayList<Event> eventList, boolean isLargeCard) {
         this.eventList = eventList;
+        this.isLargeCard = isLargeCard;
     }
 
     public void setOnEventCardClickedListener(OnEventCardClickedListener listener) {
@@ -26,7 +29,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.small_event_card_layout, parent, false);
+                .inflate(isLargeCard ? R.layout.large_event_card_layout : R.layout.small_event_card_layout,
+                        parent, false);
         return new ViewHolder(view);
     }
 

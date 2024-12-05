@@ -42,7 +42,7 @@ public class FavoritesFragment extends Fragment implements OnEventCardClickedLis
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         // Initialize the adapter with the event list and set click listener
-        adapter = new MyAdapter(favoriteEventList);
+        adapter = new MyAdapter(favoriteEventList, false);
         // Assuming MyAdapter has a method to set the click listener
         // adapter.setOnEventCardClickedListener(this);
 
