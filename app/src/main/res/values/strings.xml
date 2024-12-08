@@ -35,4 +35,5 @@
     <string name="event_desc_3">Three days of jazz, blues, and more featuring both legendary performers and emerging artists.</string>
     <string name="event_desc_4">The Bay Area\'s premier comic and entertainment convention featuring celebrity guests, panels, and exhibits.</string>
     <string name="event_desc_5">Coldplay returns to the Bay Area with their spectacular Music of the Spheres World Tour.</string>
+    <string name="google_maps_api_key">AIzaSyCig3hj3xbbBNHp0AkLLKATy1ANFQb6_DI</string>
 </resources>

@@ -12,6 +12,8 @@ public class Event implements Parcelable {
     private final int locationID;
     private final int dateID;
     private final int descriptionID;
+    private double latitude;
+    private double longitude;
 
     public Event(int imageID, int eventNameID, int locationID, int dateID, int descriptionID) {
         this.imageID = imageID;
@@ -27,6 +29,8 @@ public class Event implements Parcelable {
         locationID = in.readInt();
         dateID = in.readInt();
         descriptionID = in.readInt();
+        latitude = in.readDouble();
+        longitude = in.readDouble();
     }
 
     public static final Creator<Event> CREATOR = new Creator<Event>() {
@@ -66,6 +70,10 @@ public class Event implements Parcelable {
         return 0;
     }
 
+    public double getLatitude() { return latitude; }
+
+    public double getLongitude() { return longitude; }
+
     @Override
     public void writeToParcel(@NonNull Parcel parcel, int i) {
         parcel.writeInt(imageID);
@@ -73,5 +81,8 @@ public class Event implements Parcelable {
         parcel.writeInt(locationID);
         parcel.writeInt(dateID);
         parcel.writeInt(descriptionID);
+        parcel.writeDouble(latitude);
+        parcel.writeDouble(longitude);
+
     }
 }

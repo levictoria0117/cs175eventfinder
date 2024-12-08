@@ -15,7 +15,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     private OnEventCardClickedListener clickListener;
     private boolean isLargeCard = false;
 
-
     public MyAdapter(ArrayList<Event> eventList, boolean isLargeCard) {
         this.eventList = eventList;
         this.isLargeCard = isLargeCard;
