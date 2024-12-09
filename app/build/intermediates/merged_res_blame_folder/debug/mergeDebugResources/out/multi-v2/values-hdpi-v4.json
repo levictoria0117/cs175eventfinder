@@ -1,0 +1,20 @@
+{
+    "logs": [
+        {
+            "outputFile": "edu.sjsu.android.localeventfinder.app-mergeDebugResources-37:/values-hdpi-v4/values-hdpi-v4.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\levic\\.gradle\\caches\\transforms-4\\27d2b7055c6619c6ddbecffb6a6b2609\\transformed\\appcompat-1.7.0\\res\\values-hdpi-v4\\values-hdpi-v4.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endLines": "6",
+                        "endColumns": "13",
+                        "endOffsets": "327"
+                    }
+                }
+            ]
+        }
+    ]
+}

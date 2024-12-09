@@ -1,0 +1,849 @@
+Index: app/build.gradle.kts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import com.android.build.gradle.internal.utils.getDesugarLibDependencyGraph\r\n\r\nplugins {\r\n    alias(libs.plugins.android.application)\r\n}\r\n\r\nandroid {\r\n    namespace = \"edu.sjsu.android.localeventfinder\"\r\n    compileSdk = 34\r\n\r\n    defaultConfig {\r\n        applicationId = \"edu.sjsu.android.localeventfinder\"\r\n        minSdk = 21\r\n        targetSdk = 34\r\n        versionCode = 1\r\n        versionName = \"1.0\"\r\n\r\n        testInstrumentationRunner = \"androidx.test.runner.AndroidJUnitRunner\"\r\n    }\r\n\r\n    buildTypes {\r\n        release {\r\n            isMinifyEnabled = false\r\n            proguardFiles(\r\n                getDefaultProguardFile(\"proguard-android-optimize.txt\"),\r\n                \"proguard-rules.pro\"\r\n            )\r\n        }\r\n    }\r\n    compileOptions {\r\n        sourceCompatibility = JavaVersion.VERSION_1_8\r\n        targetCompatibility = JavaVersion.VERSION_1_8\r\n    }\r\n    buildFeatures {\r\n        viewBinding = true\r\n    }\r\n}\r\n\r\ndependencies {\r\n    implementation(libs.appcompat)\r\n    implementation(libs.material)\r\n    implementation(libs.activity)\r\n    implementation(libs.constraintlayout)\r\n    implementation(libs.play.services.maps)\r\n    testImplementation(libs.junit)\r\n    androidTestImplementation(libs.ext.junit)\r\n    androidTestImplementation(libs.espresso.core)\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/build.gradle.kts b/app/build.gradle.kts
+--- a/app/build.gradle.kts	
++++ b/app/build.gradle.kts	
+@@ -42,7 +42,16 @@
+     implementation(libs.activity)
+     implementation(libs.constraintlayout)
+     implementation(libs.play.services.maps)
++    implementation(libs.cronet.embedded)
++    implementation(libs.room.common)
++    implementation(libs.room.runtime)
+     testImplementation(libs.junit)
+     androidTestImplementation(libs.ext.junit)
+     androidTestImplementation(libs.espresso.core)
+-}
+\ No newline at end of file
++    implementation(libs.retrofit)
++    implementation(libs.retrofit.gson)
++    implementation(libs.okhttp.logging)
++    annotationProcessor(libs.room.compiler)
++    implementation(libs.glide)
++    annotationProcessor(libs.glide.compiler)
++}
+Index: app/src/main/AndroidManifest.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<manifest xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\">\r\n\r\n    <application\r\n        android:allowBackup=\"true\"\r\n        android:dataExtractionRules=\"@xml/data_extraction_rules\"\r\n        android:fullBackupContent=\"@xml/backup_rules\"\r\n        android:icon=\"@mipmap/ic_launcher\"\r\n        android:label=\"@string/app_name\"\r\n        android:roundIcon=\"@mipmap/ic_launcher_round\"\r\n        android:supportsRtl=\"true\"\r\n        android:theme=\"@style/Theme.LocalEventFinder\"\r\n        tools:targetApi=\"31\">\r\n\r\n        <meta-data\r\n            android:name=\"com.google.android.geo.API_KEY\"\r\n            android:value=\"@string/google_maps_api_key\" />\r\n\r\n        <activity\r\n            android:name=\".SignUpActivity\"\r\n            android:exported=\"true\" />\r\n        <activity\r\n            android:name=\".LoginActivity\"\r\n            android:exported=\"true\" />\r\n\r\n        <activity\r\n            android:name=\".MainActivity\"\r\n            android:exported=\"true\" />\r\n        <activity\r\n            android:name=\".LandingPageActivity\"\r\n            android:exported=\"true\">\r\n            <intent-filter>\r\n                <action android:name=\"android.intent.action.MAIN\" />\r\n\r\n                <category android:name=\"android.intent.category.LAUNCHER\" />\r\n            </intent-filter>\r\n        </activity>\r\n\r\n        <activity\r\n            android:name=\".EventDetailFragmentActivity\">\r\n        </activity>\r\n\r\n    </application>\r\n\r\n</manifest>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/AndroidManifest.xml b/app/src/main/AndroidManifest.xml
+--- a/app/src/main/AndroidManifest.xml	
++++ b/app/src/main/AndroidManifest.xml	
+@@ -1,6 +1,7 @@
+ <?xml version="1.0" encoding="utf-8"?>
+ <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+     xmlns:tools="http://schemas.android.com/tools">
++    <uses-permission android:name="android.permission.INTERNET" />
+ 
+     <application
+         android:allowBackup="true"
+Index: gradle/libs.versions.toml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>[versions]\r\nagp = \"8.5.2\"\r\njunit = \"4.13.2\"\r\njunitVersion = \"1.2.1\"\r\nespressoCore = \"3.6.1\"\r\nappcompat = \"1.7.0\"\r\nmaterial = \"1.12.0\"\r\nactivity = \"1.9.3\"\r\nconstraintlayout = \"2.1.4\"\r\nplayServicesMaps = \"19.0.0\"\r\n\r\n[libraries]\r\njunit = { group = \"junit\", name = \"junit\", version.ref = \"junit\" }\r\next-junit = { group = \"androidx.test.ext\", name = \"junit\", version.ref = \"junitVersion\" }\r\nespresso-core = { group = \"androidx.test.espresso\", name = \"espresso-core\", version.ref = \"espressoCore\" }\r\nappcompat = { group = \"androidx.appcompat\", name = \"appcompat\", version.ref = \"appcompat\" }\r\nmaterial = { group = \"com.google.android.material\", name = \"material\", version.ref = \"material\" }\r\nactivity = { group = \"androidx.activity\", name = \"activity\", version.ref = \"activity\" }\r\nconstraintlayout = { group = \"androidx.constraintlayout\", name = \"constraintlayout\", version.ref = \"constraintlayout\" }\r\nplay-services-maps = { group = \"com.google.android.gms\", name = \"play-services-maps\", version.ref = \"playServicesMaps\" }\r\n\r\n[plugins]\r\nandroid-application = { id = \"com.android.application\", version.ref = \"agp\" }\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/gradle/libs.versions.toml b/gradle/libs.versions.toml
+--- a/gradle/libs.versions.toml	
++++ b/gradle/libs.versions.toml	
+@@ -8,6 +8,11 @@
+ activity = "1.9.3"
+ constraintlayout = "2.1.4"
+ playServicesMaps = "19.0.0"
++cronetEmbedded = "119.6045.31"
++roomCommon = "2.6.1"
++roomRuntime = "2.6.1"
++roomCompiler = "2.6.1"
++glide = "4.15.1"
+ 
+ [libraries]
+ junit = { group = "junit", name = "junit", version.ref = "junit" }
+@@ -18,6 +23,15 @@
+ activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
+ constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
+ play-services-maps = { group = "com.google.android.gms", name = "play-services-maps", version.ref = "playServicesMaps" }
++retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version = "2.9.0" }
++retrofit-gson = { group = "com.squareup.retrofit2", name = "converter-gson", version = "2.9.0" }
++okhttp-logging = { group = "com.squareup.okhttp3", name = "logging-interceptor", version = "4.11.0" }
++cronet-embedded = { group = "org.chromium.net", name = "cronet-embedded", version.ref = "cronetEmbedded" }
++room-common = { group = "androidx.room", name = "room-common", version.ref = "roomCommon" }
++room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "roomRuntime" }
++room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "roomCompiler" }
++glide = { group = "com.github.bumptech.glide", name = "glide", version.ref = "glide" }
++glide-compiler = { group = "com.github.bumptech.glide", name = "compiler", version.ref = "glide" }
+ 
+ [plugins]
+ android-application = { id = "com.android.application", version.ref = "agp" }
+Index: app/src/main/java/edu/sjsu/android/localeventfinder/EventDetailFragmentActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package edu.sjsu.android.localeventfinder;\r\n\r\nimport android.content.Intent;\r\nimport android.os.Bundle;\r\nimport android.widget.ImageView;\r\nimport android.widget.TextView;\r\n\r\nimport androidx.appcompat.app.AppCompatActivity;\r\n\r\nimport android.content.Intent;\r\nimport android.os.Bundle;\r\nimport android.widget.ImageView;\r\nimport android.widget.TextView;\r\nimport androidx.appcompat.app.AppCompatActivity;\r\nimport androidx.fragment.app.FragmentActivity;\r\nimport com.google.android.gms.maps.CameraUpdateFactory;\r\nimport com.google.android.gms.maps.GoogleMap;\r\nimport com.google.android.gms.maps.OnMapReadyCallback;\r\nimport com.google.android.gms.maps.SupportMapFragment;\r\nimport com.google.android.gms.maps.model.LatLng;\r\nimport com.google.android.gms.maps.model.MarkerOptions;\r\n\r\npublic class EventDetailFragmentActivity extends AppCompatActivity implements OnMapReadyCallback {\r\n\r\n    private GoogleMap mMap;\r\n    private Event event;\r\n\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        setContentView(R.layout.activity_event_detail);\r\n\r\n        Intent intent = getIntent();\r\n        event = intent.getParcelableExtra(\"event\");\r\n\r\n        if (event != null) {\r\n            ImageView eventImage = findViewById(R.id.event_image);\r\n            TextView eventName = findViewById(R.id.event_name);\r\n            TextView eventLocation = findViewById(R.id.event_location);\r\n            TextView eventDate = findViewById(R.id.event_date);\r\n            TextView eventDescription = findViewById(R.id.event_description);\r\n\r\n            eventImage.setImageResource(event.getImageID());\r\n            eventName.setText(event.getEventNameID());\r\n            eventLocation.setText(event.getLocationID());\r\n            eventDate.setText(event.getDateID());\r\n            eventDescription.setText(event.getDescriptionID());\r\n        }\r\n\r\n        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);\r\n        if (mapFragment != null) {\r\n            mapFragment.getMapAsync(this);\r\n        }\r\n    }\r\n\r\n    @Override\r\n    public void onMapReady(GoogleMap googleMap) {\r\n        mMap = googleMap;\r\n\r\n        // Assuming the event has latitude and longitude data\r\n        double latitude = event.getLatitude(); // Example: 37.7749\r\n        double longitude = event.getLongitude(); // Example: -122.4194\r\n\r\n        LatLng eventLocation = new LatLng(latitude, longitude);\r\n        mMap.addMarker(new MarkerOptions().position(eventLocation));\r\n        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(eventLocation, 15)); // Zoom level of the map\r\n    }\r\n}\r\n\r\n\r\n
+===================================================================
+diff --git a/app/src/main/java/edu/sjsu/android/localeventfinder/EventDetailFragmentActivity.java b/app/src/main/java/edu/sjsu/android/localeventfinder/EventDetailFragmentActivity.java
+--- a/app/src/main/java/edu/sjsu/android/localeventfinder/EventDetailFragmentActivity.java	
++++ b/app/src/main/java/edu/sjsu/android/localeventfinder/EventDetailFragmentActivity.java	
+@@ -1,18 +1,11 @@
+ package edu.sjsu.android.localeventfinder;
+ 
+-import android.content.Intent;
+-import android.os.Bundle;
+-import android.widget.ImageView;
+-import android.widget.TextView;
+-
+-import androidx.appcompat.app.AppCompatActivity;
+-
+-import android.content.Intent;
+ import android.os.Bundle;
+ import android.widget.ImageView;
+ import android.widget.TextView;
++
+ import androidx.appcompat.app.AppCompatActivity;
+-import androidx.fragment.app.FragmentActivity;
++
+ import com.google.android.gms.maps.CameraUpdateFactory;
+ import com.google.android.gms.maps.GoogleMap;
+ import com.google.android.gms.maps.OnMapReadyCallback;
+@@ -20,6 +13,8 @@
+ import com.google.android.gms.maps.model.LatLng;
+ import com.google.android.gms.maps.model.MarkerOptions;
+ 
++import com.bumptech.glide.Glide;
++
+ public class EventDetailFragmentActivity extends AppCompatActivity implements OnMapReadyCallback {
+ 
+     private GoogleMap mMap;
+@@ -30,8 +25,7 @@
+         super.onCreate(savedInstanceState);
+         setContentView(R.layout.activity_event_detail);
+ 
+-        Intent intent = getIntent();
+-        event = intent.getParcelableExtra("event");
++        event = getIntent().getParcelableExtra("event");
+ 
+         if (event != null) {
+             ImageView eventImage = findViewById(R.id.event_image);
+@@ -40,11 +34,16 @@
+             TextView eventDate = findViewById(R.id.event_date);
+             TextView eventDescription = findViewById(R.id.event_description);
+ 
+-            eventImage.setImageResource(event.getImageID());
+-            eventName.setText(event.getEventNameID());
+-            eventLocation.setText(event.getLocationID());
+-            eventDate.setText(event.getDateID());
+-            eventDescription.setText(event.getDescriptionID());
++            Glide.with(this)
++                    .load(event.getImageUrl())
++                    .placeholder(R.drawable.event_temp_background)
++                    .error(R.drawable.event_temp_background)
++                    .into(eventImage);
++
++            eventName.setText(event.getName());
++            eventLocation.setText(event.getLocation());
++            eventDate.setText(event.getDate());
++            eventDescription.setText(event.getDescription());
+         }
+ 
+         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
+@@ -56,15 +55,14 @@
+     @Override
+     public void onMapReady(GoogleMap googleMap) {
+         mMap = googleMap;
+-
+-        // Assuming the event has latitude and longitude data
+-        double latitude = event.getLatitude(); // Example: 37.7749
+-        double longitude = event.getLongitude(); // Example: -122.4194
+-
+-        LatLng eventLocation = new LatLng(latitude, longitude);
+-        mMap.addMarker(new MarkerOptions().position(eventLocation));
+-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(eventLocation, 15)); // Zoom level of the map
++        LatLng eventLocation = new LatLng(event.getLatitude(), event.getLongitude());
++        mMap.addMarker(new MarkerOptions().position(eventLocation).title(event.getName()));
++        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(eventLocation, 15));
+     }
+ }
+ 
+ 
++
++
++
++
+Index: app/src/main/res/layout/large_event_card_layout.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<com.google.android.material.card.MaterialCardView\r\n    xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"wrap_content\"\r\n    android:layout_margin=\"8dp\"\r\n    app:cardBackgroundColor=\"#FFFFFF\"\r\n    app:cardCornerRadius=\"24dp\"\r\n    app:strokeWidth=\"1dp\"\r\n    app:strokeColor=\"@color/gray\"\r\n    app:cardElevation=\"0dp\">\r\n\r\n    <LinearLayout\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:orientation=\"vertical\"\r\n        android:padding=\"8dp\">\r\n\r\n        <ImageView\r\n            android:id=\"@+id/event_image\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"200dp\"\r\n            android:background=\"@drawable/rounded_image\"\r\n            android:clipToOutline=\"true\"\r\n            android:contentDescription=\"Event image\"\r\n            android:scaleType=\"fitCenter\" />\r\n\r\n        <LinearLayout\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:orientation=\"horizontal\">\r\n\r\n            <LinearLayout\r\n                android:layout_width=\"0dp\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_weight=\"1\"\r\n                android:orientation=\"vertical\"\r\n                android:layout_marginStart=\"16dp\">\r\n\r\n                <TextView\r\n                    android:id=\"@+id/event_name\"\r\n                    android:layout_width=\"wrap_content\"\r\n                    android:layout_height=\"wrap_content\"\r\n                    android:layout_marginBottom=\"6dp\"\r\n                    android:textSize=\"18sp\"\r\n                    android:textStyle=\"bold\"/>\r\n\r\n                <!-- Date with icon -->\r\n                <LinearLayout\r\n                    android:layout_width=\"wrap_content\"\r\n                    android:layout_height=\"wrap_content\"\r\n                    android:orientation=\"horizontal\"\r\n                    android:layout_marginTop=\"4dp\"\r\n                    android:gravity=\"center_vertical\">\r\n\r\n                    <ImageView\r\n                        android:layout_width=\"16dp\"\r\n                        android:layout_height=\"16dp\"\r\n                        android:src=\"@drawable/outline_location_on_24\"\r\n                        android:layout_marginEnd=\"4dp\"/>\r\n\r\n                    <TextView\r\n                        android:id=\"@+id/event_location\"\r\n                        android:layout_width=\"wrap_content\"\r\n                        android:layout_height=\"wrap_content\"\r\n                        android:textColor=\"@color/secondaryText\"/>\r\n                </LinearLayout>\r\n\r\n                <!-- Location with icon -->\r\n                <LinearLayout\r\n                    android:layout_width=\"wrap_content\"\r\n                    android:layout_height=\"wrap_content\"\r\n                    android:orientation=\"horizontal\"\r\n                    android:layout_marginTop=\"4dp\"\r\n                    android:gravity=\"center_vertical\">\r\n\r\n                    <ImageView\r\n                        android:layout_width=\"16dp\"\r\n                        android:layout_height=\"16dp\"\r\n                        android:src=\"@drawable/baseline_calendar_today_24\"\r\n                        android:layout_marginEnd=\"4dp\"/>\r\n\r\n                    <TextView\r\n                        android:id=\"@+id/event_date\"\r\n                        android:layout_width=\"wrap_content\"\r\n                        android:layout_height=\"wrap_content\"\r\n                        android:textColor=\"@color/secondaryText\"/>\r\n                </LinearLayout>\r\n            </LinearLayout>\r\n\r\n            <ImageButton\r\n                android:id=\"@+id/favorite_button\"\r\n                android:layout_width=\"24dp\"\r\n                android:layout_height=\"46dp\"\r\n                android:layout_gravity=\"top\"\r\n                android:background=\"?attr/selectableItemBackgroundBorderless\"\r\n                android:contentDescription=\"Add to favorites\"\r\n                android:src=\"@drawable/rounded_bookmark_heart_24\" />\r\n\r\n        </LinearLayout>\r\n\r\n    </LinearLayout>\r\n\r\n</com.google.android.material.card.MaterialCardView>
+===================================================================
+diff --git a/app/src/main/res/layout/large_event_card_layout.xml b/app/src/main/res/layout/large_event_card_layout.xml
+--- a/app/src/main/res/layout/large_event_card_layout.xml	
++++ b/app/src/main/res/layout/large_event_card_layout.xml	
+@@ -25,7 +25,7 @@
+             android:background="@drawable/rounded_image"
+             android:clipToOutline="true"
+             android:contentDescription="Event image"
+-            android:scaleType="fitCenter" />
++            android:scaleType="centerCrop"/>
+ 
+         <LinearLayout
+             android:layout_width="match_parent"
+Index: app/src/main/res/layout/small_event_card_layout.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<com.google.android.material.card.MaterialCardView\r\n    xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"wrap_content\"\r\n    android:layout_margin=\"8dp\"\r\n    app:cardBackgroundColor=\"#FFFFFF\"\r\n    app:cardCornerRadius=\"24dp\"\r\n    app:strokeWidth=\"1dp\"\r\n    app:strokeColor=\"@color/gray\"\r\n    app:cardElevation=\"0dp\">\r\n\r\n    <LinearLayout\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:orientation=\"horizontal\"\r\n        android:padding=\"8dp\">\r\n\r\n        <ImageView\r\n            android:id=\"@+id/event_image\"\r\n            android:layout_width=\"80dp\"\r\n            android:layout_height=\"80dp\"\r\n            android:background=\"@drawable/rounded_image\"\r\n            android:clipToOutline=\"true\"\r\n            android:contentDescription=\"Event image\"\r\n            android:scaleType=\"fitCenter\" />\r\n\r\n        <LinearLayout\r\n            android:layout_width=\"0dp\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_weight=\"1\"\r\n            android:orientation=\"vertical\"\r\n            android:layout_marginStart=\"16dp\">\r\n\r\n            <TextView\r\n                android:id=\"@+id/event_name\"\r\n                android:layout_width=\"wrap_content\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_marginBottom=\"6dp\"\r\n                android:textSize=\"18sp\"\r\n                android:textStyle=\"bold\"/>\r\n\r\n            <!-- Date with icon -->\r\n            <LinearLayout\r\n                android:layout_width=\"wrap_content\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:orientation=\"horizontal\"\r\n                android:layout_marginTop=\"4dp\"\r\n                android:gravity=\"center_vertical\">\r\n\r\n                <ImageView\r\n                    android:layout_width=\"16dp\"\r\n                    android:layout_height=\"16dp\"\r\n                    android:src=\"@drawable/outline_location_on_24\"\r\n                    android:layout_marginEnd=\"4dp\"/>\r\n\r\n                <TextView\r\n                    android:id=\"@+id/event_location\"\r\n                    android:layout_width=\"wrap_content\"\r\n                    android:layout_height=\"wrap_content\"\r\n                    android:textColor=\"@color/secondaryText\"/>\r\n            </LinearLayout>\r\n\r\n            <!-- Location with icon -->\r\n            <LinearLayout\r\n                android:layout_width=\"wrap_content\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:orientation=\"horizontal\"\r\n                android:layout_marginTop=\"4dp\"\r\n                android:gravity=\"center_vertical\">\r\n\r\n                <ImageView\r\n                    android:layout_width=\"16dp\"\r\n                    android:layout_height=\"16dp\"\r\n                    android:src=\"@drawable/baseline_calendar_today_24\"\r\n                    android:layout_marginEnd=\"4dp\"/>\r\n\r\n                <TextView\r\n                    android:id=\"@+id/event_date\"\r\n                    android:layout_width=\"wrap_content\"\r\n                    android:layout_height=\"wrap_content\"\r\n                    android:textColor=\"@color/secondaryText\"/>\r\n            </LinearLayout>\r\n        </LinearLayout>\r\n\r\n        <ImageButton\r\n            android:id=\"@+id/favorite_button\"\r\n            android:layout_width=\"24dp\"\r\n            android:layout_height=\"46dp\"\r\n            android:layout_gravity=\"top\"\r\n            android:background=\"?attr/selectableItemBackgroundBorderless\"\r\n            android:contentDescription=\"Add to favorites\"\r\n            android:src=\"@drawable/rounded_bookmark_heart_24\" />\r\n    </LinearLayout>\r\n\r\n</com.google.android.material.card.MaterialCardView>
+===================================================================
+diff --git a/app/src/main/res/layout/small_event_card_layout.xml b/app/src/main/res/layout/small_event_card_layout.xml
+--- a/app/src/main/res/layout/small_event_card_layout.xml	
++++ b/app/src/main/res/layout/small_event_card_layout.xml	
+@@ -25,7 +25,7 @@
+             android:background="@drawable/rounded_image"
+             android:clipToOutline="true"
+             android:contentDescription="Event image"
+-            android:scaleType="fitCenter" />
++            android:scaleType="centerCrop" />
+ 
+         <LinearLayout
+             android:layout_width="0dp"
+Index: app/src/main/java/edu/sjsu/android/localeventfinder/FavoritesFragment.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package edu.sjsu.android.localeventfinder;\r\n\r\nimport android.content.Context;\r\nimport android.os.Bundle;\r\nimport androidx.fragment.app.Fragment;\r\nimport androidx.recyclerview.widget.LinearLayoutManager;\r\nimport androidx.recyclerview.widget.RecyclerView;\r\nimport android.view.LayoutInflater;\r\nimport android.view.View;\r\nimport android.view.ViewGroup;\r\nimport java.util.ArrayList;\r\n\r\npublic class FavoritesFragment extends Fragment implements OnEventCardClickedListener {\r\n\r\n    private ArrayList<Event> favoriteEventList;\r\n    private RecyclerView recyclerView;\r\n    private MyAdapter adapter;\r\n\r\n    public FavoritesFragment() {\r\n        // Required empty public constructor\r\n    }\r\n\r\n    @Override\r\n    public void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        favoriteEventList = new ArrayList<>();\r\n        favoriteEventList.add(new Event(R.drawable.event_temp_background, R.string.event_name_1, R.string.event_location_1, R.string.event_date_1, R.string.event_desc_1));\r\n        favoriteEventList.add(new Event(R.drawable.event_temp_background, R.string.event_name_2, R.string.event_location_2, R.string.event_date_2, R.string.event_desc_2));\r\n        favoriteEventList.add(new Event(R.drawable.event_temp_background, R.string.event_name_3, R.string.event_location_3, R.string.event_date_3, R.string.event_desc_3));\r\n        favoriteEventList.add(new Event(R.drawable.event_temp_background, R.string.event_name_4, R.string.event_location_4, R.string.event_date_4, R.string.event_desc_4));\r\n        favoriteEventList.add(new Event(R.drawable.event_temp_background, R.string.event_name_5, R.string.event_location_5, R.string.event_date_5, R.string.event_desc_5));\r\n    }\r\n\r\n    @Override\r\n    public View onCreateView(LayoutInflater inflater, ViewGroup container,\r\n                             Bundle savedInstanceState) {\r\n        // Inflate the layout for this fragment\r\n        View view = inflater.inflate(R.layout.fragment_favorites, container, false);\r\n\r\n        // Find the RecyclerView in the inflated layout\r\n        recyclerView = view.findViewById(R.id.list);\r\n        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));\r\n\r\n        // Initialize the adapter with the event list and set click listener\r\n        adapter = new MyAdapter(favoriteEventList, false);\r\n        // Assuming MyAdapter has a method to set the click listener\r\n        // adapter.setOnEventCardClickedListener(this);\r\n\r\n        recyclerView.setAdapter(adapter);\r\n\r\n        return view;\r\n    }\r\n\r\n    @Override\r\n    public void onClick(int position) {\r\n        if (position != favoriteEventList.size() - 1) {\r\n            goDetail(position);\r\n        }\r\n    }\r\n\r\n    private void goDetail(int position) {\r\n        System.out.print(\"Detail\");\r\n        // Implement your detail view navigation logic here\r\n    }\r\n}
+===================================================================
+diff --git a/app/src/main/java/edu/sjsu/android/localeventfinder/FavoritesFragment.java b/app/src/main/java/edu/sjsu/android/localeventfinder/FavoritesFragment.java
+--- a/app/src/main/java/edu/sjsu/android/localeventfinder/FavoritesFragment.java	
++++ b/app/src/main/java/edu/sjsu/android/localeventfinder/FavoritesFragment.java	
+@@ -1,8 +1,9 @@
+ package edu.sjsu.android.localeventfinder;
+ 
+-import android.content.Context;
++import android.content.Intent;
+ import android.os.Bundle;
+ import androidx.fragment.app.Fragment;
++import androidx.lifecycle.ViewModelProvider;
+ import androidx.recyclerview.widget.LinearLayoutManager;
+ import androidx.recyclerview.widget.RecyclerView;
+ import android.view.LayoutInflater;
+@@ -10,56 +11,42 @@
+ import android.view.ViewGroup;
+ import java.util.ArrayList;
+ 
+-public class FavoritesFragment extends Fragment implements OnEventCardClickedListener {
++public class FavoritesFragment extends Fragment {
+ 
+-    private ArrayList<Event> favoriteEventList;
+     private RecyclerView recyclerView;
+     private MyAdapter adapter;
+-
+-    public FavoritesFragment() {
+-        // Required empty public constructor
+-    }
+-
+-    @Override
+-    public void onCreate(Bundle savedInstanceState) {
+-        super.onCreate(savedInstanceState);
+-        favoriteEventList = new ArrayList<>();
+-        favoriteEventList.add(new Event(R.drawable.event_temp_background, R.string.event_name_1, R.string.event_location_1, R.string.event_date_1, R.string.event_desc_1));
+-        favoriteEventList.add(new Event(R.drawable.event_temp_background, R.string.event_name_2, R.string.event_location_2, R.string.event_date_2, R.string.event_desc_2));
+-        favoriteEventList.add(new Event(R.drawable.event_temp_background, R.string.event_name_3, R.string.event_location_3, R.string.event_date_3, R.string.event_desc_3));
+-        favoriteEventList.add(new Event(R.drawable.event_temp_background, R.string.event_name_4, R.string.event_location_4, R.string.event_date_4, R.string.event_desc_4));
+-        favoriteEventList.add(new Event(R.drawable.event_temp_background, R.string.event_name_5, R.string.event_location_5, R.string.event_date_5, R.string.event_desc_5));
+-    }
++    private EventViewModel eventViewModel;
+ 
+     @Override
+-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+-                             Bundle savedInstanceState) {
+-        // Inflate the layout for this fragment
++    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+         View view = inflater.inflate(R.layout.fragment_favorites, container, false);
+ 
+-        // Find the RecyclerView in the inflated layout
+         recyclerView = view.findViewById(R.id.list);
+         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+ 
+-        // Initialize the adapter with the event list and set click listener
+-        adapter = new MyAdapter(favoriteEventList, false);
+-        // Assuming MyAdapter has a method to set the click listener
+-        // adapter.setOnEventCardClickedListener(this);
+-
++        adapter = new MyAdapter(new ArrayList<>(), false);
++        adapter.setOnItemClickListener(new MyAdapter.OnItemClickListener() {
++            @Override
++            public void onItemClick(Event event) {
++                navigateToEventDetail(event);
++            }
++        });
+         recyclerView.setAdapter(adapter);
+ 
++        eventViewModel = new ViewModelProvider(this).get(EventViewModel.class);
++        eventViewModel.getFavoriteEvents().observe(getViewLifecycleOwner(), events -> {
++            adapter.updateData(events);
++        });
++
+         return view;
+     }
+ 
+-    @Override
+-    public void onClick(int position) {
+-        if (position != favoriteEventList.size() - 1) {
+-            goDetail(position);
+-        }
+-    }
++    private void navigateToEventDetail(Event event) {
++        Intent intent = new Intent(getContext(), EventDetailFragmentActivity.class);
++        intent.putExtra("event", event);
++        startActivity(intent);
++    }
++}
+ 
+-    private void goDetail(int position) {
+-        System.out.print("Detail");
+-        // Implement your detail view navigation logic here
+-    }
+-}
+\ No newline at end of file
++
++
+Index: app/src/main/java/edu/sjsu/android/localeventfinder/MainActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package edu.sjsu.android.localeventfinder;\r\n\r\nimport android.os.Bundle;\r\nimport android.util.TypedValue;\r\nimport android.widget.ImageView;\r\nimport android.widget.LinearLayout;\r\nimport androidx.appcompat.app.AppCompatActivity;\r\nimport androidx.fragment.app.FragmentPagerAdapter;\r\nimport androidx.viewpager.widget.ViewPager;\r\nimport com.google.android.material.tabs.TabLayout;\r\nimport java.util.Objects;\r\n\r\npublic class MainActivity extends AppCompatActivity {\r\n\r\n    private TabLayout tabLayout;\r\n    private ViewPager viewPager;\r\n\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        setContentView(R.layout.activity_main);\r\n\r\n        tabLayout = findViewById(R.id.tabLayout);\r\n        viewPager = findViewById(R.id.viewPager);\r\n\r\n        tabLayout.setupWithViewPager(viewPager);\r\n\r\n        VPAdapter vpAdapter = new VPAdapter(getSupportFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);\r\n        vpAdapter.addFragment(new HomeFragment(), \"Home\");\r\n        vpAdapter.addFragment(new FavoritesFragment(), \"Favorite\");\r\n        vpAdapter.addFragment(new TicketsFragment(), \"Tickets\");\r\n        vpAdapter.addFragment(new SettingsFragment(), \"Settings\");\r\n        viewPager.setAdapter(vpAdapter);\r\n\r\n        setupTabIcons();\r\n    }\r\n\r\n    private void setupTabIcons() {\r\n        int iconSizeInDp = 70;\r\n\r\n        // Convert dp to pixels\r\n        int iconSizeInPx = (int) TypedValue.applyDimension(\r\n                TypedValue.COMPLEX_UNIT_DIP,\r\n                iconSizeInDp,\r\n                getResources().getDisplayMetrics()\r\n        );\r\n\r\n        int[] tabIcons = {\r\n                R.drawable.home_icon,\r\n                R.drawable.favorites_icon,\r\n                R.drawable.tickets_icon,\r\n                R.drawable.account_icon\r\n        };\r\n\r\n        for (int i = 0; i < tabLayout.getTabCount(); i++) {\r\n            TabLayout.Tab tab = tabLayout.getTabAt(i);\r\n            if (tab != null) {\r\n                tab.setText(null);\r\n                tab.setIcon(tabIcons[i]);\r\n\r\n                // Get the LinearLayout that contains the ImageView\r\n                LinearLayout layout = (LinearLayout) tab.view;\r\n                ImageView imageView = (ImageView) layout.getChildAt(0);\r\n\r\n                // Set custom size for the ImageView\r\n                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(\r\n                        iconSizeInPx,\r\n                        iconSizeInPx\r\n                );\r\n                params.setMargins(0, 10, 0, 10); // Add some vertical padding\r\n                imageView.setLayoutParams(params);\r\n                imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);\r\n            }\r\n        }\r\n    }\r\n}
+===================================================================
+diff --git a/app/src/main/java/edu/sjsu/android/localeventfinder/MainActivity.java b/app/src/main/java/edu/sjsu/android/localeventfinder/MainActivity.java
+--- a/app/src/main/java/edu/sjsu/android/localeventfinder/MainActivity.java	
++++ b/app/src/main/java/edu/sjsu/android/localeventfinder/MainActivity.java	
+@@ -8,7 +8,6 @@
+ import androidx.fragment.app.FragmentPagerAdapter;
+ import androidx.viewpager.widget.ViewPager;
+ import com.google.android.material.tabs.TabLayout;
+-import java.util.Objects;
+ 
+ public class MainActivity extends AppCompatActivity {
+ 
+@@ -27,7 +26,7 @@
+ 
+         VPAdapter vpAdapter = new VPAdapter(getSupportFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
+         vpAdapter.addFragment(new HomeFragment(), "Home");
+-        vpAdapter.addFragment(new FavoritesFragment(), "Favorite");
++        vpAdapter.addFragment(new FavoritesFragment(), "Favorites");
+         vpAdapter.addFragment(new TicketsFragment(), "Tickets");
+         vpAdapter.addFragment(new SettingsFragment(), "Settings");
+         viewPager.setAdapter(vpAdapter);
+Index: app/src/main/java/edu/sjsu/android/localeventfinder/HomeFragment.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package edu.sjsu.android.localeventfinder;\r\n\r\nimport android.content.Intent;\r\nimport android.os.Bundle;\r\n\r\nimport androidx.fragment.app.Fragment;\r\nimport androidx.recyclerview.widget.GridLayoutManager;\r\nimport androidx.recyclerview.widget.LinearLayoutManager;\r\nimport androidx.recyclerview.widget.RecyclerView;\r\n\r\nimport android.view.LayoutInflater;\r\nimport android.view.View;\r\nimport android.view.ViewGroup;\r\n\r\nimport java.util.ArrayList;\r\n\r\npublic class HomeFragment extends Fragment {\r\n\r\n    private RecyclerView nearestEventsRecyclerView, moreEventsRecyclerView;\r\n    private MyAdapter nearestEventsAdapter, moreEventsAdapter;\r\n    private ArrayList<Event> nearestEventsList, moreEventsList;\r\n\r\n    @Override\r\n    public void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n\r\n        nearestEventsList = new ArrayList<>();\r\n        nearestEventsList.add(new Event(R.drawable.event_temp_background, R.string.event_name_1, R.string.event_location_1, R.string.event_date_1, R.string.event_desc_1));\r\n        nearestEventsList.add(new Event(R.drawable.event_temp_background, R.string.event_name_2, R.string.event_location_2, R.string.event_date_2, R.string.event_desc_2));\r\n        nearestEventsList.add(new Event(R.drawable.event_temp_background, R.string.event_name_3, R.string.event_location_3, R.string.event_date_3, R.string.event_desc_3));\r\n        nearestEventsList.add(new Event(R.drawable.event_temp_background, R.string.event_name_4, R.string.event_location_4, R.string.event_date_4, R.string.event_desc_4));\r\n        nearestEventsList.add(new Event(R.drawable.event_temp_background, R.string.event_name_5, R.string.event_location_5, R.string.event_date_5, R.string.event_desc_5));\r\n\r\n        moreEventsList = new ArrayList<>();\r\n        moreEventsList.add(new Event(R.drawable.event_temp_background, R.string.event_name_1, R.string.event_location_1, R.string.event_date_1, R.string.event_desc_1));\r\n        moreEventsList.add(new Event(R.drawable.event_temp_background, R.string.event_name_2, R.string.event_location_2, R.string.event_date_2, R.string.event_desc_2));\r\n        moreEventsList.add(new Event(R.drawable.event_temp_background, R.string.event_name_3, R.string.event_location_3, R.string.event_date_3, R.string.event_desc_3));\r\n        moreEventsList.add(new Event(R.drawable.event_temp_background, R.string.event_name_4, R.string.event_location_4, R.string.event_date_4, R.string.event_desc_4));\r\n        moreEventsList.add(new Event(R.drawable.event_temp_background, R.string.event_name_5, R.string.event_location_5, R.string.event_date_5, R.string.event_desc_5));\r\n    }\r\n\r\n    @Override\r\n    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {\r\n        View view = inflater.inflate(R.layout.fragment_home, container, false);\r\n\r\n        moreEventsRecyclerView = view.findViewById(R.id.more_events_recycler);\r\n        moreEventsRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));\r\n        moreEventsAdapter = new MyAdapter(moreEventsList, false);\r\n        moreEventsRecyclerView.setAdapter(moreEventsAdapter);\r\n\r\n        nearestEventsRecyclerView = view.findViewById(R.id.nearest_events_recycler);\r\n        GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 1, LinearLayoutManager.HORIZONTAL, false);\r\n        nearestEventsRecyclerView.setLayoutManager(gridLayoutManager);\r\n        nearestEventsAdapter = new MyAdapter(nearestEventsList, true);\r\n        nearestEventsRecyclerView.setAdapter(nearestEventsAdapter);\r\n\r\n        // Set up click listeners for both adapters\r\n        moreEventsAdapter.setOnEventCardClickedListener(position -> {\r\n            Event event = moreEventsList.get(position);\r\n            Intent intent = new Intent(getContext(), EventDetailFragmentActivity.class);\r\n            intent.putExtra(\"event\", event);  // Pass event data to the new Activity\r\n            startActivity(intent);\r\n        });\r\n\r\n        nearestEventsAdapter.setOnEventCardClickedListener(position -> {\r\n            Event event = nearestEventsList.get(position);\r\n            Intent intent = new Intent(getContext(), EventDetailFragmentActivity.class);\r\n            intent.putExtra(\"event\", event);  // Pass event data to the new Activity\r\n            startActivity(intent);\r\n        });\r\n\r\n        return view;\r\n    }\r\n}\r\n\r\n
+===================================================================
+diff --git a/app/src/main/java/edu/sjsu/android/localeventfinder/HomeFragment.java b/app/src/main/java/edu/sjsu/android/localeventfinder/HomeFragment.java
+--- a/app/src/main/java/edu/sjsu/android/localeventfinder/HomeFragment.java	
++++ b/app/src/main/java/edu/sjsu/android/localeventfinder/HomeFragment.java	
+@@ -2,74 +2,97 @@
+ 
+ import android.content.Intent;
+ import android.os.Bundle;
+-
+ import androidx.fragment.app.Fragment;
+-import androidx.recyclerview.widget.GridLayoutManager;
+ import androidx.recyclerview.widget.LinearLayoutManager;
+ import androidx.recyclerview.widget.RecyclerView;
+-
+ import android.view.LayoutInflater;
+ import android.view.View;
+ import android.view.ViewGroup;
+-
+ import java.util.ArrayList;
++import java.util.List;
++
++import androidx.lifecycle.ViewModelProvider;
+ 
+ public class HomeFragment extends Fragment {
+ 
+     private RecyclerView nearestEventsRecyclerView, moreEventsRecyclerView;
+     private MyAdapter nearestEventsAdapter, moreEventsAdapter;
+-    private ArrayList<Event> nearestEventsList, moreEventsList;
+-
+-    @Override
+-    public void onCreate(Bundle savedInstanceState) {
+-        super.onCreate(savedInstanceState);
+-
+-        nearestEventsList = new ArrayList<>();
+-        nearestEventsList.add(new Event(R.drawable.event_temp_background, R.string.event_name_1, R.string.event_location_1, R.string.event_date_1, R.string.event_desc_1));
+-        nearestEventsList.add(new Event(R.drawable.event_temp_background, R.string.event_name_2, R.string.event_location_2, R.string.event_date_2, R.string.event_desc_2));
+-        nearestEventsList.add(new Event(R.drawable.event_temp_background, R.string.event_name_3, R.string.event_location_3, R.string.event_date_3, R.string.event_desc_3));
+-        nearestEventsList.add(new Event(R.drawable.event_temp_background, R.string.event_name_4, R.string.event_location_4, R.string.event_date_4, R.string.event_desc_4));
+-        nearestEventsList.add(new Event(R.drawable.event_temp_background, R.string.event_name_5, R.string.event_location_5, R.string.event_date_5, R.string.event_desc_5));
+-
+-        moreEventsList = new ArrayList<>();
+-        moreEventsList.add(new Event(R.drawable.event_temp_background, R.string.event_name_1, R.string.event_location_1, R.string.event_date_1, R.string.event_desc_1));
+-        moreEventsList.add(new Event(R.drawable.event_temp_background, R.string.event_name_2, R.string.event_location_2, R.string.event_date_2, R.string.event_desc_2));
+-        moreEventsList.add(new Event(R.drawable.event_temp_background, R.string.event_name_3, R.string.event_location_3, R.string.event_date_3, R.string.event_desc_3));
+-        moreEventsList.add(new Event(R.drawable.event_temp_background, R.string.event_name_4, R.string.event_location_4, R.string.event_date_4, R.string.event_desc_4));
+-        moreEventsList.add(new Event(R.drawable.event_temp_background, R.string.event_name_5, R.string.event_location_5, R.string.event_date_5, R.string.event_desc_5));
+-    }
++    private EventViewModel eventViewModel;
+ 
+     @Override
+     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+         View view = inflater.inflate(R.layout.fragment_home, container, false);
+ 
++        eventViewModel = new ViewModelProvider(this).get(EventViewModel.class);
++
++        nearestEventsRecyclerView = view.findViewById(R.id.nearest_events_recycler);
++        nearestEventsRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
++        nearestEventsAdapter = new MyAdapter(new ArrayList<>(), true);
++        nearestEventsRecyclerView.setAdapter(nearestEventsAdapter);
++
+         moreEventsRecyclerView = view.findViewById(R.id.more_events_recycler);
+         moreEventsRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+-        moreEventsAdapter = new MyAdapter(moreEventsList, false);
++        moreEventsAdapter = new MyAdapter(new ArrayList<>(), false);
+         moreEventsRecyclerView.setAdapter(moreEventsAdapter);
+ 
+-        nearestEventsRecyclerView = view.findViewById(R.id.nearest_events_recycler);
+-        GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 1, LinearLayoutManager.HORIZONTAL, false);
+-        nearestEventsRecyclerView.setLayoutManager(gridLayoutManager);
+-        nearestEventsAdapter = new MyAdapter(nearestEventsList, true);
+-        nearestEventsRecyclerView.setAdapter(nearestEventsAdapter);
++        List<Event> hardcodedEvents = getHardcodedEvents();
+ 
+-        // Set up click listeners for both adapters
+-        moreEventsAdapter.setOnEventCardClickedListener(position -> {
+-            Event event = moreEventsList.get(position);
+-            Intent intent = new Intent(getContext(), EventDetailFragmentActivity.class);
+-            intent.putExtra("event", event);  // Pass event data to the new Activity
+-            startActivity(intent);
++        nearestEventsAdapter.updateData(hardcodedEvents);
++        moreEventsAdapter.updateData(hardcodedEvents);
++
++        // Set click listener for event items
++        nearestEventsAdapter.setOnItemClickListener(new MyAdapter.OnItemClickListener() {
++            public void onItemClick(Event event) {
++                navigateToEventDetail(event);
++            }
+         });
+ 
+-        nearestEventsAdapter.setOnEventCardClickedListener(position -> {
+-            Event event = nearestEventsList.get(position);
+-            Intent intent = new Intent(getContext(), EventDetailFragmentActivity.class);
+-            intent.putExtra("event", event);  // Pass event data to the new Activity
+-            startActivity(intent);
++        moreEventsAdapter.setOnItemClickListener(new MyAdapter.OnItemClickListener() {
++            public void onItemClick(Event event) {
++                navigateToEventDetail(event);
++            }
+         });
+ 
+         return view;
+     }
++
++    private List<Event> getHardcodedEvents() {
++        List<Event> events = new ArrayList<>();
++
++        events.add(new Event("https://sanjoseholidayparade.com/wp-content/uploads/2019/08/SJ-Holiday-Parade-2006-358.jpg", "San Jose Holiday Parade", "San Jose, CA", "2024-12-15", "Join us for the annual San Jose Holiday Parade with floats, music, and festive fun!", 37.3382, -121.8863));
++        events.add(new Event("https://images.squarespace-cdn.com/content/v1/651075c1ac6d252b427acf9a/93eddb7f-28c2-4554-a579-2c7b4f1a295c/13-min.jpg", "Downtown Ice Skating", "San Jose, CA", "2024-12-16", "Outdoor ice skating rink in the heart of downtown San Jose. Perfect for the whole family.", 37.3382, -121.8853));
++        events.add(new Event("https://www.metrosiliconvalley.com/wp-content/uploads/sites/16/2019/12/san-jose-christmas-in-the-park-world-record-trees-1-1024x703-1-1024x580.jpg", "Christmas in the Park", "San Jose, CA", "2024-12-17", "Experience the magic of Christmas with thousands of lights, holiday displays, and seasonal activities.", 37.3376, -121.8882));
++        events.add(new Event("https://cdn.kqed.org/wp-content/uploads/sites/2/2018/02/La_Misa_Negra_PREFERRED_sop01_rgb_md-800x401.jpg", "San Jose Jazz Winter Fest", "San Jose, CA", "2024-12-18", "A cozy celebration of live jazz music, local artists, and holiday cheer.", 37.3352, -121.8815));
++        events.add(new Event("https://media.licdn.com/dms/image/v2/C561BAQGT5vzAKJm6qg/company-background_10000/company-background_10000/0/1585488328418/santa_clara_county_fairgrounds_cover?e=2147483647&v=beta&t=MBSzJgUZbbFE3_kxlHzMd8z007JRTNCh1yZRJEIZess", "Santa Clara County Fairgrounds Holiday Market", "San Jose, CA", "2024-12-19", "Shop for unique gifts, artisanal foods, and crafts at the Holiday Market.", 37.3163, -121.9467));
++        events.add(new Event("https://www.bothman.com/wp-content/uploads/2023/10/Avaya-Stadium-1.jpg", "San Jose Earthquakes Soccer Game", "San Jose, CA", "2024-12-20", "Cheer on the San Jose Earthquakes in their last match of the season at PayPal Park.", 37.3328, -121.9008));
++        events.add(new Event("https://www.thepierce.com/wp-content/uploads/2016/12/pierce_lights.jpg", "Winter Wonderland at Vasona Lake", "Los Gatos, CA", "2024-12-21", "Celebrate the season at Vasona Lake with a winter light display, train rides, and family-friendly activities.", 37.2391, -121.9718));
++        events.add(new Event("https://streamline.imgix.net/a772b068-76bf-4e49-880d-090dc5c1d0e8/722b388f-0e54-4041-8b70-176147dc192c/IMG_5061.JPG?ixlib=rb-1.1.0&w=2000&h=2000&fit=max&or=0&s=6355c16e24c1d58347c29f32348280f9", "Holiday Craft Fair", "San Jose, CA", "2024-12-22", "Explore handmade gifts, crafts, and delicious food at the San Jose Holiday Craft Fair.", 37.3342, -121.8893));
++        events.add(new Event("https://www.sjpl.org/wp-content/uploads/sites/142/2024/04/chiavari-1024x640.png", "Cirque du Soleil - OVO", "San Jose, CA", "2024-12-23", "A thrilling acrobatic performance filled with humor and amazing circus acts.", 37.3395, -121.8877));
++        events.add(new Event("https://i.ytimg.com/vi/YZ1o0dm-HsY/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLA0D-OEYF-pWKvizVwqZ9LHDhDC6Q", "Christmas Eve Service at Willow Glen Baptist Church", "San Jose, CA", "2024-12-24", "A peaceful Christmas Eve service with candlelight, music, and communion.", 37.2954, -121.8981));
++        events.add(new Event("https://sjmusart.org/sites/default/files/styles/wide/public/2023-05/sjma_11-16-22_a-point-stretched_015_52798444769_o.jpg?itok=5-l-M5l3", "San Jose Museum of Art Exhibition", "San Jose, CA", "2024-12-26", "Enjoy a world-class exhibition showcasing contemporary art at the San Jose Museum of Art.", 37.3349, -121.8873));
++        events.add(new Event("https://www.fairmont.com/assets/0/104/2181/2186/4806/7424/8bf95135-3716-4883-9d75-5dcd3122163f.jpg", "New Year's Eve at The Fairmont", "San Jose, CA", "2024-12-31", "Celebrate New Year's Eve in style with a luxurious party at The Fairmont Hotel.", 37.3376, -121.8940));
++        events.add(new Event("https://images.squarespace-cdn.com/content/v1/5fd3c36b42b3ce0af68e50ba/f8a11e31-2488-4ce7-8741-f6edb411b807/i-6pLfJkv.jpg", "San Pedro Square Market Food Festival", "San Jose, CA", "2024-12-14", "Taste delicious local food from some of the best food trucks and vendors at San Pedro Square.", 37.3350, -121.8947));
++        events.add(new Event("https://img.grouponcdn.com/deal/j2MvyARVmg9eWChPm7aR/XV-700x420/v1/t2100x1260.webp", "Holiday Train at the Children’s Discovery Museum", "San Jose, CA", "2024-12-15", "Take a ride on the Holiday Train at the Children’s Discovery Museum and enjoy festive activities.", 37.3345, -121.8887));
++        events.add(new Event("https://cloudfront-us-east-1.images.arcpublishing.com/advancelocal/DGD25FS4AZA7VMEQLACWS5VKBQ.jpg", "Tech Museum of Innovation - Winter Showcase", "San Jose, CA", "2024-12-17", "Explore the Winter Showcase at the Tech Museum and enjoy hands-on exhibits.", 37.3340, -121.8888));
++        events.add(new Event("https://christmasmarketusa.com/wp-content/uploads/2024/06/image-139-1024x590.jpeg", "San Jose Holiday Market", "San Jose, CA", "2024-12-18", "Find unique gifts, festive foods, and crafts at the San Jose Holiday Market.", 37.3382, -121.8863));
++        events.add(new Event("https://img.grouponcdn.com/deal/moHG2jc1dMWgoz7nkccorNeWTLc/mo-2048x1229/v1/t2100x1260.webp", "Holiday Lights at Gilroy Gardens", "Gilroy, CA", "2024-12-20", "Explore a winter wonderland of festive lights and decorations at Gilroy Gardens.", 37.0030, -121.5787));
++        events.add(new Event("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4HqijT4MSrkRW8_BXEz_K7ZN-_Ix8fcQVCw&s", "Tech Santa - Holiday Toy Drive", "San Jose, CA", "2024-12-22", "Join us in giving back to the community by donating toys for children in need.", 37.3350, -121.8878));
++        events.add(new Event("https://cdn.shortpixel.ai/spai/q_lossy+ret_img+to_webp/sf.funcheap.com/wp-content/uploads/2016/12/night_shot_of_citp-563x367.jpg", "Christmas Eve at San Jose Convention Center", "San Jose, CA", "2024-12-24", "Experience an unforgettable Christmas Eve celebration with live music and performances.", 37.3360, -121.8875));
++        events.add(new Event("https://ceoldigital.com/wp-content/uploads/2024/08/Upcoming-Festivals-events-San-Jose-Fall-Winter-2024-2025.jpg", "Annual San Jose Winter Parade", "San Jose, CA", "2024-12-16", "The city’s annual winter parade with floats, marching bands, and holiday cheer.", 37.3382, -121.8863));
++        events.add(new Event("https://images.squarespace-cdn.com/content/v1/5c7be58cb7c92c5aeea73009/1639461746366-B0VOQPY8RLC3JW6XKHLT/THC-NYD-global-hike_arthur-poulin.jpg?format=1500w", "New Year's Day Hike", "San Jose, CA", "2025-01-01", "Start the year right with a refreshing hike through the beautiful Santa Teresa Park.", 37.2513, -121.8413));
++
++        return events;
++    }
++
++    private void navigateToEventDetail(Event event) {
++        Intent intent = new Intent(getActivity(), EventDetailFragmentActivity.class);
++        intent.putExtra("event", event); // Pass the event object
++        startActivity(intent);
++    }
+ }
++
++
++
++
++
+ 
+Index: app/src/main/java/edu/sjsu/android/localeventfinder/MyAdapter.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package edu.sjsu.android.localeventfinder;\r\n\r\nimport android.view.LayoutInflater;\r\nimport android.view.View;\r\nimport android.view.ViewGroup;\r\nimport android.widget.ImageView;\r\nimport android.widget.TextView;\r\nimport androidx.annotation.NonNull;\r\nimport androidx.recyclerview.widget.RecyclerView;\r\nimport java.util.ArrayList;\r\n\r\npublic class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {\r\n\r\n    private final ArrayList<Event> eventList;\r\n    private OnEventCardClickedListener clickListener;\r\n    private boolean isLargeCard = false;\r\n\r\n    public MyAdapter(ArrayList<Event> eventList, boolean isLargeCard) {\r\n        this.eventList = eventList;\r\n        this.isLargeCard = isLargeCard;\r\n    }\r\n\r\n    public void setOnEventCardClickedListener(OnEventCardClickedListener listener) {\r\n        this.clickListener = listener;\r\n    }\r\n\r\n    @NonNull\r\n    @Override\r\n    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {\r\n        View view = LayoutInflater.from(parent.getContext())\r\n                .inflate(isLargeCard ? R.layout.large_event_card_layout : R.layout.small_event_card_layout,\r\n                        parent, false);\r\n        return new ViewHolder(view);\r\n    }\r\n\r\n    @Override\r\n    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {\r\n        Event event = eventList.get(position);\r\n        holder.eventImage.setImageResource(event.getImageID());\r\n        holder.eventName.setText(event.getEventNameID());\r\n        holder.eventLocation.setText(event.getLocationID());\r\n        holder.eventDate.setText(event.getDateID());\r\n\r\n        holder.itemView.setOnClickListener(v -> {\r\n            if (clickListener != null) {\r\n                clickListener.onClick(position);\r\n            }\r\n        });\r\n    }\r\n\r\n    @Override\r\n    public int getItemCount() {\r\n        return eventList.size();\r\n    }\r\n\r\n    public static class ViewHolder extends RecyclerView.ViewHolder {\r\n        public final ImageView eventImage;\r\n        public final TextView eventName;\r\n        public final TextView eventLocation;\r\n        public final TextView eventDate;\r\n\r\n        public ViewHolder(View view) {\r\n            super(view);\r\n            eventImage = view.findViewById(R.id.event_image);\r\n            eventName = view.findViewById(R.id.event_name);\r\n            eventLocation = view.findViewById(R.id.event_location);\r\n            eventDate = view.findViewById(R.id.event_date);\r\n        }\r\n    }\r\n}\r\n
+===================================================================
+diff --git a/app/src/main/java/edu/sjsu/android/localeventfinder/MyAdapter.java b/app/src/main/java/edu/sjsu/android/localeventfinder/MyAdapter.java
+--- a/app/src/main/java/edu/sjsu/android/localeventfinder/MyAdapter.java	
++++ b/app/src/main/java/edu/sjsu/android/localeventfinder/MyAdapter.java	
+@@ -1,5 +1,7 @@
+ package edu.sjsu.android.localeventfinder;
+ 
++import android.content.Context;
++import android.content.Intent;
+ import android.view.LayoutInflater;
+ import android.view.View;
+ import android.view.ViewGroup;
+@@ -7,21 +9,30 @@
+ import android.widget.TextView;
+ import androidx.annotation.NonNull;
+ import androidx.recyclerview.widget.RecyclerView;
++
++import com.bumptech.glide.Glide;
++
+ import java.util.ArrayList;
++import java.util.List;
+ 
+ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
+ 
+-    private final ArrayList<Event> eventList;
+-    private OnEventCardClickedListener clickListener;
+-    private boolean isLargeCard = false;
++    private List<Event> eventList;
++    private boolean isLargeCard;
++    private OnItemClickListener onItemClickListener;
+ 
+-    public MyAdapter(ArrayList<Event> eventList, boolean isLargeCard) {
++    public MyAdapter(List<Event> eventList, boolean isLargeCard) {
+         this.eventList = eventList;
+         this.isLargeCard = isLargeCard;
+     }
+ 
+-    public void setOnEventCardClickedListener(OnEventCardClickedListener listener) {
+-        this.clickListener = listener;
++    public void updateData(List<Event> newEvents) {
++        this.eventList = newEvents;
++        notifyDataSetChanged();
++    }
++
++    public void setOnItemClickListener(OnItemClickListener listener) {
++        this.onItemClickListener = listener;
+     }
+ 
+     @NonNull
+@@ -36,14 +47,20 @@
+     @Override
+     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+         Event event = eventList.get(position);
+-        holder.eventImage.setImageResource(event.getImageID());
+-        holder.eventName.setText(event.getEventNameID());
+-        holder.eventLocation.setText(event.getLocationID());
+-        holder.eventDate.setText(event.getDateID());
++
++        Glide.with(holder.itemView.getContext())
++                .load(event.getImageUrl())
++                .placeholder(R.drawable.event_temp_background)
++                .error(R.drawable.event_temp_background)
++                .into(holder.eventImage);
++
++        holder.eventName.setText(event.getName());
++        holder.eventLocation.setText(event.getLocation());
++        holder.eventDate.setText(event.getDate());
+ 
+         holder.itemView.setOnClickListener(v -> {
+-            if (clickListener != null) {
+-                clickListener.onClick(position);
++            if (onItemClickListener != null) {
++                onItemClickListener.onItemClick(event);
+             }
+         });
+     }
+@@ -67,4 +84,10 @@
+             eventDate = view.findViewById(R.id.event_date);
+         }
+     }
++
++    public interface OnItemClickListener {
++        void onItemClick(Event event);
++    }
+ }
++
++
+Index: app/src/main/res/layout/fragment_home.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<LinearLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    android:orientation=\"vertical\"\r\n    android:padding=\"16dp\">\r\n\r\n    <LinearLayout\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:orientation=\"horizontal\"\r\n        android:weightSum=\"1\"\r\n        android:layout_marginBottom=\"30dp\">\r\n\r\n        <ImageView\r\n            android:id=\"@+id/imageView2\"\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_gravity=\"start\"\r\n            app:srcCompat=\"@drawable/aroundulogo_orange\" />\r\n\r\n        <Space\r\n            android:layout_width=\"0dp\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_weight=\"1\"/>\r\n\r\n        <ImageView\r\n            android:id=\"@+id/imageView3\"\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"match_parent\"\r\n            android:layout_gravity=\"end\"\r\n            app:srcCompat=\"@drawable/search\" />\r\n\r\n    </LinearLayout>\r\n\r\n    <LinearLayout\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:orientation=\"horizontal\">\r\n\r\n\r\n    </LinearLayout>\r\n\r\n    <TextView\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:text=\"Nearest Events\"\r\n        android:textSize=\"18sp\"\r\n        android:textStyle=\"bold\"\r\n        android:paddingTop=\"16dp\"\r\n        android:paddingBottom=\"8dp\" />\r\n\r\n    <androidx.recyclerview.widget.RecyclerView\r\n        android:id=\"@+id/nearest_events_recycler\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:orientation=\"horizontal\"\r\n        android:paddingBottom=\"16dp\" />\r\n\r\n    <LinearLayout\r\n        android:orientation=\"horizontal\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:paddingBottom=\"8dp\"\r\n        android:gravity=\"center_vertical\">\r\n\r\n        <TextView\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:text=\"More Events\"\r\n            android:textSize=\"18sp\"\r\n            android:textStyle=\"bold\"\r\n            android:gravity=\"center_vertical\"\r\n            android:layout_weight=\"1\" />\r\n\r\n        <TextView\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_gravity=\"end\"\r\n            android:gravity=\"center_vertical\"\r\n            android:text=\"See All\"\r\n            android:textSize=\"14sp\"\r\n            android:textStyle=\"bold\"\r\n            android:textColor=\"@color/primary\"/>\r\n    </LinearLayout>\r\n\r\n    <androidx.recyclerview.widget.RecyclerView\r\n        android:id=\"@+id/more_events_recycler\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\" />\r\n\r\n</LinearLayout>\r\n
+===================================================================
+diff --git a/app/src/main/res/layout/fragment_home.xml b/app/src/main/res/layout/fragment_home.xml
+--- a/app/src/main/res/layout/fragment_home.xml	
++++ b/app/src/main/res/layout/fragment_home.xml	
+@@ -6,6 +6,7 @@
+     android:orientation="vertical"
+     android:padding="16dp">
+ 
++    <!-- Header Section with Logos -->
+     <LinearLayout
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+@@ -34,14 +35,7 @@
+ 
+     </LinearLayout>
+ 
+-    <LinearLayout
+-        android:layout_width="match_parent"
+-        android:layout_height="wrap_content"
+-        android:orientation="horizontal">
+-
+-
+-    </LinearLayout>
+-
++    <!-- Nearest Events Section -->
+     <TextView
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+@@ -58,6 +52,7 @@
+         android:orientation="horizontal"
+         android:paddingBottom="16dp" />
+ 
++    <!-- More Events Section -->
+     <LinearLayout
+         android:orientation="horizontal"
+         android:layout_width="match_parent"
+Index: .idea/dbnavigator.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"DBNavigator.Project.DataEditorManager\">\r\n    <record-view-column-sorting-type value=\"BY_INDEX\" />\r\n    <value-preview-text-wrapping value=\"true\" />\r\n    <value-preview-pinned value=\"false\" />\r\n  </component>\r\n  <component name=\"DBNavigator.Project.DatabaseEditorStateManager\">\r\n    <last-used-providers />\r\n  </component>\r\n  <component name=\"DBNavigator.Project.DatabaseFileManager\">\r\n    <open-files />\r\n  </component>\r\n  <component name=\"DBNavigator.Project.Settings\">\r\n    <connections />\r\n    <browser-settings>\r\n      <general>\r\n        <display-mode value=\"TABBED\" />\r\n        <navigation-history-size value=\"100\" />\r\n        <show-object-details value=\"false\" />\r\n      </general>\r\n      <filters>\r\n        <object-type-filter>\r\n          <object-type name=\"SCHEMA\" enabled=\"true\" />\r\n          <object-type name=\"USER\" enabled=\"true\" />\r\n          <object-type name=\"ROLE\" enabled=\"true\" />\r\n          <object-type name=\"PRIVILEGE\" enabled=\"true\" />\r\n          <object-type name=\"CHARSET\" enabled=\"true\" />\r\n          <object-type name=\"TABLE\" enabled=\"true\" />\r\n          <object-type name=\"VIEW\" enabled=\"true\" />\r\n          <object-type name=\"MATERIALIZED_VIEW\" enabled=\"true\" />\r\n          <object-type name=\"NESTED_TABLE\" enabled=\"true\" />\r\n          <object-type name=\"COLUMN\" enabled=\"true\" />\r\n          <object-type name=\"INDEX\" enabled=\"true\" />\r\n          <object-type name=\"CONSTRAINT\" enabled=\"true\" />\r\n          <object-type name=\"DATASET_TRIGGER\" enabled=\"true\" />\r\n          <object-type name=\"DATABASE_TRIGGER\" enabled=\"true\" />\r\n          <object-type name=\"SYNONYM\" enabled=\"true\" />\r\n          <object-type name=\"SEQUENCE\" enabled=\"true\" />\r\n          <object-type name=\"PROCEDURE\" enabled=\"true\" />\r\n          <object-type name=\"FUNCTION\" enabled=\"true\" />\r\n          <object-type name=\"PACKAGE\" enabled=\"true\" />\r\n          <object-type name=\"TYPE\" enabled=\"true\" />\r\n          <object-type name=\"TYPE_ATTRIBUTE\" enabled=\"true\" />\r\n          <object-type name=\"ARGUMENT\" enabled=\"true\" />\r\n          <object-type name=\"DIMENSION\" enabled=\"true\" />\r\n          <object-type name=\"CLUSTER\" enabled=\"true\" />\r\n          <object-type name=\"DBLINK\" enabled=\"true\" />\r\n        </object-type-filter>\r\n      </filters>\r\n      <sorting>\r\n        <object-type name=\"COLUMN\" sorting-type=\"NAME\" />\r\n        <object-type name=\"FUNCTION\" sorting-type=\"NAME\" />\r\n        <object-type name=\"PROCEDURE\" sorting-type=\"NAME\" />\r\n        <object-type name=\"ARGUMENT\" sorting-type=\"POSITION\" />\r\n        <object-type name=\"TYPE ATTRIBUTE\" sorting-type=\"POSITION\" />\r\n      </sorting>\r\n      <default-editors>\r\n        <object-type name=\"VIEW\" editor-type=\"SELECTION\" />\r\n        <object-type name=\"PACKAGE\" editor-type=\"SELECTION\" />\r\n        <object-type name=\"TYPE\" editor-type=\"SELECTION\" />\r\n      </default-editors>\r\n    </browser-settings>\r\n    <navigation-settings>\r\n      <lookup-filters>\r\n        <lookup-objects>\r\n          <object-type name=\"SCHEMA\" enabled=\"true\" />\r\n          <object-type name=\"USER\" enabled=\"false\" />\r\n          <object-type name=\"ROLE\" enabled=\"false\" />\r\n          <object-type name=\"PRIVILEGE\" enabled=\"false\" />\r\n          <object-type name=\"CHARSET\" enabled=\"false\" />\r\n          <object-type name=\"TABLE\" enabled=\"true\" />\r\n          <object-type name=\"VIEW\" enabled=\"true\" />\r\n          <object-type name=\"MATERIALIZED VIEW\" enabled=\"true\" />\r\n          <object-type name=\"INDEX\" enabled=\"true\" />\r\n          <object-type name=\"CONSTRAINT\" enabled=\"true\" />\r\n          <object-type name=\"DATASET TRIGGER\" enabled=\"true\" />\r\n          <object-type name=\"DATABASE TRIGGER\" enabled=\"true\" />\r\n          <object-type name=\"SYNONYM\" enabled=\"false\" />\r\n          <object-type name=\"SEQUENCE\" enabled=\"true\" />\r\n          <object-type name=\"PROCEDURE\" enabled=\"true\" />\r\n          <object-type name=\"FUNCTION\" enabled=\"true\" />\r\n          <object-type name=\"PACKAGE\" enabled=\"true\" />\r\n          <object-type name=\"TYPE\" enabled=\"true\" />\r\n          <object-type name=\"DIMENSION\" enabled=\"false\" />\r\n          <object-type name=\"CLUSTER\" enabled=\"false\" />\r\n          <object-type name=\"DBLINK\" enabled=\"true\" />\r\n        </lookup-objects>\r\n        <force-database-load value=\"false\" />\r\n        <prompt-connection-selection value=\"true\" />\r\n        <prompt-schema-selection value=\"true\" />\r\n      </lookup-filters>\r\n    </navigation-settings>\r\n    <dataset-grid-settings>\r\n      <general>\r\n        <enable-zooming value=\"true\" />\r\n        <enable-column-tooltip value=\"true\" />\r\n      </general>\r\n      <sorting>\r\n        <nulls-first value=\"true\" />\r\n        <max-sorting-columns value=\"4\" />\r\n      </sorting>\r\n      <audit-columns>\r\n        <column-names value=\"\" />\r\n        <visible value=\"true\" />\r\n        <editable value=\"false\" />\r\n      </audit-columns>\r\n    </dataset-grid-settings>\r\n    <dataset-editor-settings>\r\n      <text-editor-popup>\r\n        <active value=\"false\" />\r\n        <active-if-empty value=\"false\" />\r\n        <data-length-threshold value=\"100\" />\r\n        <popup-delay value=\"1000\" />\r\n      </text-editor-popup>\r\n      <values-actions-popup>\r\n        <show-popup-button value=\"true\" />\r\n        <element-count-threshold value=\"1000\" />\r\n        <data-length-threshold value=\"250\" />\r\n      </values-actions-popup>\r\n      <general>\r\n        <fetch-block-size value=\"100\" />\r\n        <fetch-timeout value=\"30\" />\r\n        <trim-whitespaces value=\"true\" />\r\n        <convert-empty-strings-to-null value=\"true\" />\r\n        <select-content-on-cell-edit value=\"true\" />\r\n        <large-value-preview-active value=\"true\" />\r\n      </general>\r\n      <filters>\r\n        <prompt-filter-dialog value=\"true\" />\r\n        <default-filter-type value=\"BASIC\" />\r\n      </filters>\r\n      <qualified-text-editor text-length-threshold=\"300\">\r\n        <content-types>\r\n          <content-type name=\"Text\" enabled=\"true\" />\r\n          <content-type name=\"Properties\" enabled=\"true\" />\r\n          <content-type name=\"XML\" enabled=\"true\" />\r\n          <content-type name=\"DTD\" enabled=\"true\" />\r\n          <content-type name=\"HTML\" enabled=\"true\" />\r\n          <content-type name=\"XHTML\" enabled=\"true\" />\r\n          <content-type name=\"Java\" enabled=\"true\" />\r\n          <content-type name=\"SQL\" enabled=\"true\" />\r\n          <content-type name=\"PL/SQL\" enabled=\"true\" />\r\n          <content-type name=\"JSON\" enabled=\"true\" />\r\n          <content-type name=\"JSON5\" enabled=\"true\" />\r\n          <content-type name=\"Groovy\" enabled=\"true\" />\r\n          <content-type name=\"AIDL\" enabled=\"true\" />\r\n          <content-type name=\"YAML\" enabled=\"true\" />\r\n          <content-type name=\"Manifest\" enabled=\"true\" />\r\n        </content-types>\r\n      </qualified-text-editor>\r\n      <record-navigation>\r\n        <navigation-target value=\"VIEWER\" />\r\n      </record-navigation>\r\n    </dataset-editor-settings>\r\n    <code-editor-settings>\r\n      <general>\r\n        <show-object-navigation-gutter value=\"false\" />\r\n        <show-spec-declaration-navigation-gutter value=\"true\" />\r\n        <enable-spellchecking value=\"true\" />\r\n        <enable-reference-spellchecking value=\"false\" />\r\n      </general>\r\n      <confirmations>\r\n        <save-changes value=\"false\" />\r\n        <revert-changes value=\"true\" />\r\n      </confirmations>\r\n    </code-editor-settings>\r\n    <code-completion-settings>\r\n      <filters>\r\n        <basic-filter>\r\n          <filter-element type=\"RESERVED_WORD\" id=\"keyword\" selected=\"true\" />\r\n          <filter-element type=\"RESERVED_WORD\" id=\"function\" selected=\"true\" />\r\n          <filter-element type=\"RESERVED_WORD\" id=\"parameter\" selected=\"true\" />\r\n          <filter-element type=\"RESERVED_WORD\" id=\"datatype\" selected=\"true\" />\r\n          <filter-element type=\"RESERVED_WORD\" id=\"exception\" selected=\"true\" />\r\n          <filter-element type=\"OBJECT\" id=\"schema\" selected=\"true\" />\r\n          <filter-element type=\"OBJECT\" id=\"role\" selected=\"true\" />\r\n          <filter-element type=\"OBJECT\" id=\"user\" selected=\"true\" />\r\n          <filter-element type=\"OBJECT\" id=\"privilege\" selected=\"true\" />\r\n          <user-schema>\r\n            <filter-element type=\"OBJECT\" id=\"table\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"view\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"materialized view\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"index\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"constraint\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"trigger\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"synonym\" selected=\"false\" />\r\n            <filter-element type=\"OBJECT\" id=\"sequence\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"procedure\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"function\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"package\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"type\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"dimension\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"cluster\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"dblink\" selected=\"true\" />\r\n          </user-schema>\r\n          <public-schema>\r\n            <filter-element type=\"OBJECT\" id=\"table\" selected=\"false\" />\r\n            <filter-element type=\"OBJECT\" id=\"view\" selected=\"false\" />\r\n            <filter-element type=\"OBJECT\" id=\"materialized view\" selected=\"false\" />\r\n            <filter-element type=\"OBJECT\" id=\"index\" selected=\"false\" />\r\n            <filter-element type=\"OBJECT\" id=\"constraint\" selected=\"false\" />\r\n            <filter-element type=\"OBJECT\" id=\"trigger\" selected=\"false\" />\r\n            <filter-element type=\"OBJECT\" id=\"synonym\" selected=\"false\" />\r\n            <filter-element type=\"OBJECT\" id=\"sequence\" selected=\"false\" />\r\n            <filter-element type=\"OBJECT\" id=\"procedure\" selected=\"false\" />\r\n            <filter-element type=\"OBJECT\" id=\"function\" selected=\"false\" />\r\n            <filter-element type=\"OBJECT\" id=\"package\" selected=\"false\" />\r\n            <filter-element type=\"OBJECT\" id=\"type\" selected=\"false\" />\r\n            <filter-element type=\"OBJECT\" id=\"dimension\" selected=\"false\" />\r\n            <filter-element type=\"OBJECT\" id=\"cluster\" selected=\"false\" />\r\n            <filter-element type=\"OBJECT\" id=\"dblink\" selected=\"false\" />\r\n          </public-schema>\r\n          <any-schema>\r\n            <filter-element type=\"OBJECT\" id=\"table\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"view\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"materialized view\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"index\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"constraint\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"trigger\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"synonym\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"sequence\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"procedure\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"function\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"package\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"type\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"dimension\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"cluster\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"dblink\" selected=\"true\" />\r\n          </any-schema>\r\n        </basic-filter>\r\n        <extended-filter>\r\n          <filter-element type=\"RESERVED_WORD\" id=\"keyword\" selected=\"true\" />\r\n          <filter-element type=\"RESERVED_WORD\" id=\"function\" selected=\"true\" />\r\n          <filter-element type=\"RESERVED_WORD\" id=\"parameter\" selected=\"true\" />\r\n          <filter-element type=\"RESERVED_WORD\" id=\"datatype\" selected=\"true\" />\r\n          <filter-element type=\"RESERVED_WORD\" id=\"exception\" selected=\"true\" />\r\n          <filter-element type=\"OBJECT\" id=\"schema\" selected=\"true\" />\r\n          <filter-element type=\"OBJECT\" id=\"user\" selected=\"true\" />\r\n          <filter-element type=\"OBJECT\" id=\"role\" selected=\"true\" />\r\n          <filter-element type=\"OBJECT\" id=\"privilege\" selected=\"true\" />\r\n          <user-schema>\r\n            <filter-element type=\"OBJECT\" id=\"table\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"view\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"materialized view\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"index\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"constraint\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"trigger\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"synonym\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"sequence\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"procedure\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"function\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"package\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"type\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"dimension\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"cluster\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"dblink\" selected=\"true\" />\r\n          </user-schema>\r\n          <public-schema>\r\n            <filter-element type=\"OBJECT\" id=\"table\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"view\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"materialized view\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"index\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"constraint\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"trigger\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"synonym\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"sequence\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"procedure\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"function\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"package\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"type\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"dimension\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"cluster\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"dblink\" selected=\"true\" />\r\n          </public-schema>\r\n          <any-schema>\r\n            <filter-element type=\"OBJECT\" id=\"table\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"view\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"materialized view\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"index\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"constraint\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"trigger\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"synonym\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"sequence\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"procedure\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"function\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"package\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"type\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"dimension\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"cluster\" selected=\"true\" />\r\n            <filter-element type=\"OBJECT\" id=\"dblink\" selected=\"true\" />\r\n          </any-schema>\r\n        </extended-filter>\r\n      </filters>\r\n      <sorting enabled=\"true\">\r\n        <sorting-element type=\"RESERVED_WORD\" id=\"keyword\" />\r\n        <sorting-element type=\"RESERVED_WORD\" id=\"datatype\" />\r\n        <sorting-element type=\"OBJECT\" id=\"column\" />\r\n        <sorting-element type=\"OBJECT\" id=\"table\" />\r\n        <sorting-element type=\"OBJECT\" id=\"view\" />\r\n        <sorting-element type=\"OBJECT\" id=\"materialized view\" />\r\n        <sorting-element type=\"OBJECT\" id=\"index\" />\r\n        <sorting-element type=\"OBJECT\" id=\"constraint\" />\r\n        <sorting-element type=\"OBJECT\" id=\"trigger\" />\r\n        <sorting-element type=\"OBJECT\" id=\"synonym\" />\r\n        <sorting-element type=\"OBJECT\" id=\"sequence\" />\r\n        <sorting-element type=\"OBJECT\" id=\"procedure\" />\r\n        <sorting-element type=\"OBJECT\" id=\"function\" />\r\n        <sorting-element type=\"OBJECT\" id=\"package\" />\r\n        <sorting-element type=\"OBJECT\" id=\"type\" />\r\n        <sorting-element type=\"OBJECT\" id=\"dimension\" />\r\n        <sorting-element type=\"OBJECT\" id=\"cluster\" />\r\n        <sorting-element type=\"OBJECT\" id=\"dblink\" />\r\n        <sorting-element type=\"OBJECT\" id=\"schema\" />\r\n        <sorting-element type=\"OBJECT\" id=\"role\" />\r\n        <sorting-element type=\"OBJECT\" id=\"user\" />\r\n        <sorting-element type=\"RESERVED_WORD\" id=\"function\" />\r\n        <sorting-element type=\"RESERVED_WORD\" id=\"parameter\" />\r\n      </sorting>\r\n      <format>\r\n        <enforce-code-style-case value=\"true\" />\r\n      </format>\r\n    </code-completion-settings>\r\n    <execution-engine-settings>\r\n      <statement-execution>\r\n        <fetch-block-size value=\"100\" />\r\n        <execution-timeout value=\"20\" />\r\n        <debug-execution-timeout value=\"600\" />\r\n        <focus-result value=\"false\" />\r\n        <prompt-execution value=\"false\" />\r\n      </statement-execution>\r\n      <script-execution>\r\n        <command-line-interfaces />\r\n        <execution-timeout value=\"300\" />\r\n      </script-execution>\r\n      <method-execution>\r\n        <execution-timeout value=\"30\" />\r\n        <debug-execution-timeout value=\"600\" />\r\n        <parameter-history-size value=\"10\" />\r\n      </method-execution>\r\n    </execution-engine-settings>\r\n    <operation-settings>\r\n      <transactions>\r\n        <uncommitted-changes>\r\n          <on-project-close value=\"ASK\" />\r\n          <on-disconnect value=\"ASK\" />\r\n          <on-autocommit-toggle value=\"ASK\" />\r\n        </uncommitted-changes>\r\n        <multiple-uncommitted-changes>\r\n          <on-commit value=\"ASK\" />\r\n          <on-rollback value=\"ASK\" />\r\n        </multiple-uncommitted-changes>\r\n      </transactions>\r\n      <session-browser>\r\n        <disconnect-session value=\"ASK\" />\r\n        <kill-session value=\"ASK\" />\r\n        <reload-on-filter-change value=\"false\" />\r\n      </session-browser>\r\n      <compiler>\r\n        <compile-type value=\"KEEP\" />\r\n        <compile-dependencies value=\"ASK\" />\r\n        <always-show-controls value=\"false\" />\r\n      </compiler>\r\n      <debugger>\r\n        <debugger-type value=\"ASK\" />\r\n        <use-generic-runners value=\"true\" />\r\n      </debugger>\r\n    </operation-settings>\r\n    <ddl-file-settings>\r\n      <extensions>\r\n        <mapping file-type-id=\"VIEW\" extensions=\"vw\" />\r\n        <mapping file-type-id=\"TRIGGER\" extensions=\"trg\" />\r\n        <mapping file-type-id=\"PROCEDURE\" extensions=\"prc\" />\r\n        <mapping file-type-id=\"FUNCTION\" extensions=\"fnc\" />\r\n        <mapping file-type-id=\"PACKAGE\" extensions=\"pkg\" />\r\n        <mapping file-type-id=\"PACKAGE_SPEC\" extensions=\"pks\" />\r\n        <mapping file-type-id=\"PACKAGE_BODY\" extensions=\"pkb\" />\r\n        <mapping file-type-id=\"TYPE\" extensions=\"tpe\" />\r\n        <mapping file-type-id=\"TYPE_SPEC\" extensions=\"tps\" />\r\n        <mapping file-type-id=\"TYPE_BODY\" extensions=\"tpb\" />\r\n      </extensions>\r\n      <general>\r\n        <lookup-ddl-files value=\"true\" />\r\n        <create-ddl-files value=\"false\" />\r\n        <synchronize-ddl-files value=\"true\" />\r\n        <use-qualified-names value=\"false\" />\r\n        <make-scripts-rerunnable value=\"true\" />\r\n      </general>\r\n    </ddl-file-settings>\r\n    <general-settings>\r\n      <regional-settings>\r\n        <date-format value=\"MEDIUM\" />\r\n        <number-format value=\"UNGROUPED\" />\r\n        <locale value=\"SYSTEM_DEFAULT\" />\r\n        <use-custom-formats value=\"false\" />\r\n      </regional-settings>\r\n      <environment>\r\n        <environment-types>\r\n          <environment-type id=\"development\" name=\"Development\" description=\"Development environment\" color=\"-2430209/-12296320\" readonly-code=\"false\" readonly-data=\"false\" />\r\n          <environment-type id=\"integration\" name=\"Integration\" description=\"Integration environment\" color=\"-2621494/-12163514\" readonly-code=\"true\" readonly-data=\"false\" />\r\n          <environment-type id=\"production\" name=\"Production\" description=\"Productive environment\" color=\"-11574/-10271420\" readonly-code=\"true\" readonly-data=\"true\" />\r\n          <environment-type id=\"other\" name=\"Other\" description=\"\" color=\"-1576/-10724543\" readonly-code=\"false\" readonly-data=\"false\" />\r\n        </environment-types>\r\n        <visibility-settings>\r\n          <connection-tabs value=\"true\" />\r\n          <dialog-headers value=\"true\" />\r\n          <object-editor-tabs value=\"true\" />\r\n          <script-editor-tabs value=\"false\" />\r\n          <execution-result-tabs value=\"true\" />\r\n        </visibility-settings>\r\n      </environment>\r\n    </general-settings>\r\n  </component>\r\n</project>
+===================================================================
+diff --git a/.idea/dbnavigator.xml b/.idea/dbnavigator.xml
+--- a/.idea/dbnavigator.xml	
++++ b/.idea/dbnavigator.xml	
+@@ -2,8 +2,14 @@
+ <project version="4">
+   <component name="DBNavigator.Project.DataEditorManager">
+     <record-view-column-sorting-type value="BY_INDEX" />
+-    <value-preview-text-wrapping value="true" />
++    <value-preview-text-wrapping value="false" />
+     <value-preview-pinned value="false" />
++  </component>
++  <component name="DBNavigator.Project.DatabaseBrowserManager">
++    <autoscroll-to-editor value="false" />
++    <autoscroll-from-editor value="true" />
++    <show-object-properties value="true" />
++    <loaded-nodes />
+   </component>
+   <component name="DBNavigator.Project.DatabaseEditorStateManager">
+     <last-used-providers />
+Index: app/src/main/java/edu/sjsu/android/localeventfinder/Event.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package edu.sjsu.android.localeventfinder;\r\n\r\nimport android.os.Parcel;\r\nimport android.os.Parcelable;\r\n\r\nimport androidx.annotation.NonNull;\r\n\r\npublic class Event implements Parcelable {\r\n\r\n    private final int imageID;\r\n    private final int eventNameID;\r\n    private final int locationID;\r\n    private final int dateID;\r\n    private final int descriptionID;\r\n    private double latitude;\r\n    private double longitude;\r\n\r\n    public Event(int imageID, int eventNameID, int locationID, int dateID, int descriptionID) {\r\n        this.imageID = imageID;\r\n        this.eventNameID = eventNameID;\r\n        this.locationID = locationID;\r\n        this.dateID = dateID;\r\n        this.descriptionID = descriptionID;\r\n    }\r\n\r\n    protected Event(Parcel in) {\r\n        imageID = in.readInt();\r\n        eventNameID = in.readInt();\r\n        locationID = in.readInt();\r\n        dateID = in.readInt();\r\n        descriptionID = in.readInt();\r\n        latitude = in.readDouble();\r\n        longitude = in.readDouble();\r\n    }\r\n\r\n    public static final Creator<Event> CREATOR = new Creator<Event>() {\r\n        @Override\r\n        public Event createFromParcel(Parcel in) {\r\n            return new Event(in);\r\n        }\r\n\r\n        @Override\r\n        public Event[] newArray(int size) {\r\n            return new Event[size];\r\n        }\r\n    };\r\n\r\n    public int getImageID() {\r\n        return imageID;\r\n    }\r\n\r\n    public int getEventNameID() {\r\n        return eventNameID;\r\n    }\r\n\r\n    public int getLocationID() {\r\n        return locationID;\r\n    }\r\n\r\n    public int getDateID() {\r\n        return dateID;\r\n    }\r\n\r\n    public int getDescriptionID() {\r\n        return descriptionID;\r\n    }\r\n\r\n    @Override\r\n    public int describeContents() {\r\n        return 0;\r\n    }\r\n\r\n    public double getLatitude() { return latitude; }\r\n\r\n    public double getLongitude() { return longitude; }\r\n\r\n    @Override\r\n    public void writeToParcel(@NonNull Parcel parcel, int i) {\r\n        parcel.writeInt(imageID);\r\n        parcel.writeInt(eventNameID);\r\n        parcel.writeInt(locationID);\r\n        parcel.writeInt(dateID);\r\n        parcel.writeInt(descriptionID);\r\n        parcel.writeDouble(latitude);\r\n        parcel.writeDouble(longitude);\r\n\r\n    }\r\n}\r\n
+===================================================================
+diff --git a/app/src/main/java/edu/sjsu/android/localeventfinder/Event.java b/app/src/main/java/edu/sjsu/android/localeventfinder/Event.java
+--- a/app/src/main/java/edu/sjsu/android/localeventfinder/Event.java	
++++ b/app/src/main/java/edu/sjsu/android/localeventfinder/Event.java	
+@@ -3,34 +3,62 @@
+ import android.os.Parcel;
+ import android.os.Parcelable;
+ 
+-import androidx.annotation.NonNull;
++import androidx.room.Entity;
++import androidx.room.PrimaryKey;
+ 
++@Entity(tableName = "events")
+ public class Event implements Parcelable {
+ 
+-    private final int imageID;
+-    private final int eventNameID;
+-    private final int locationID;
+-    private final int dateID;
+-    private final int descriptionID;
++    @PrimaryKey(autoGenerate = true)
++    private int id;
++    private String imageUrl; // Change to String for URL
++    private String name;
++    private String location;
++    private String date;
++    private String description;
+     private double latitude;
+     private double longitude;
++    private boolean isFavorite;
+ 
+-    public Event(int imageID, int eventNameID, int locationID, int dateID, int descriptionID) {
+-        this.imageID = imageID;
+-        this.eventNameID = eventNameID;
+-        this.locationID = locationID;
+-        this.dateID = dateID;
+-        this.descriptionID = descriptionID;
++    public Event(String imageUrl, String name, String location, String date, String description, double latitude, double longitude) {
++        this.imageUrl = imageUrl;
++        this.name = name;
++        this.location = location;
++        this.date = date;
++        this.description = description;
++        this.latitude = latitude;
++        this.longitude = longitude;
++        this.isFavorite = false;
+     }
+ 
+     protected Event(Parcel in) {
+-        imageID = in.readInt();
+-        eventNameID = in.readInt();
+-        locationID = in.readInt();
+-        dateID = in.readInt();
+-        descriptionID = in.readInt();
++        id = in.readInt();
++        imageUrl = in.readString(); // Change here
++        name = in.readString();
++        location = in.readString();
++        date = in.readString();
++        description = in.readString();
+         latitude = in.readDouble();
+         longitude = in.readDouble();
++        isFavorite = in.readByte() != 0;
++    }
++
++    @Override
++    public void writeToParcel(Parcel dest, int flags) {
++        dest.writeInt(id);
++        dest.writeString(imageUrl); // Change here
++        dest.writeString(name);
++        dest.writeString(location);
++        dest.writeString(date);
++        dest.writeString(description);
++        dest.writeDouble(latitude);
++        dest.writeDouble(longitude);
++        dest.writeByte((byte) (isFavorite ? 1 : 0));
++    }
++
++    @Override
++    public int describeContents() {
++        return 0;
+     }
+ 
+     public static final Creator<Event> CREATOR = new Creator<Event>() {
+@@ -45,44 +73,80 @@
+         }
+     };
+ 
+-    public int getImageID() {
+-        return imageID;
++    // Getters and setters
++    public String getImageUrl() {
++        return imageUrl;
++    }
++
++    public void setImageUrl(String imageUrl) {
++        this.imageUrl = imageUrl;
++    }
++
++    public int getId() {
++        return id;
++    }
++
++    public void setId(int id) {
++        this.id = id;
++    }
++
++    public String getName() {
++        return name;
+     }
+ 
+-    public int getEventNameID() {
+-        return eventNameID;
++    public void setName(String name) {
++        this.name = name;
+     }
+ 
+-    public int getLocationID() {
+-        return locationID;
++    public String getLocation() {
++        return location;
+     }
+ 
+-    public int getDateID() {
+-        return dateID;
++    public void setLocation(String location) {
++        this.location = location;
+     }
+ 
+-    public int getDescriptionID() {
+-        return descriptionID;
++    public String getDate() {
++        return date;
+     }
+ 
+-    @Override
+-    public int describeContents() {
+-        return 0;
++    public void setDate(String date) {
++        this.date = date;
+     }
+ 
+-    public double getLatitude() { return latitude; }
++    public String getDescription() {
++        return description;
++    }
+ 
+-    public double getLongitude() { return longitude; }
++    public void setDescription(String description) {
++        this.description = description;
++    }
+ 
+-    @Override
+-    public void writeToParcel(@NonNull Parcel parcel, int i) {
+-        parcel.writeInt(imageID);
+-        parcel.writeInt(eventNameID);
+-        parcel.writeInt(locationID);
+-        parcel.writeInt(dateID);
+-        parcel.writeInt(descriptionID);
+-        parcel.writeDouble(latitude);
+-        parcel.writeDouble(longitude);
++    public double getLatitude() {
++        return latitude;
++    }
+ 
++    public void setLatitude(double latitude) {
++        this.latitude = latitude;
+     }
++
++    public double getLongitude() {
++        return longitude;
++    }
++
++    public void setLongitude(double longitude) {
++        this.longitude = longitude;
++    }
++
++    public boolean isFavorite() {
++        return isFavorite;
++    }
++
++    public void setFavorite(boolean favorite) {
++        isFavorite = favorite;
++    }
+ }
++
++
++
++
+Index: app/src/main/java/edu/sjsu/android/localeventfinder/TicketsFragment.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package edu.sjsu.android.localeventfinder;\r\n\r\nimport android.os.Bundle;\r\n\r\nimport androidx.fragment.app.Fragment;\r\n\r\nimport android.view.LayoutInflater;\r\nimport android.view.View;\r\nimport android.view.ViewGroup;\r\n\r\npublic class TicketsFragment extends Fragment {\r\n\r\n    @Override\r\n    public void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        if (getArguments() != null) {\r\n        }\r\n    }\r\n\r\n    @Override\r\n    public View onCreateView(LayoutInflater inflater, ViewGroup container,\r\n                             Bundle savedInstanceState) {\r\n        // Inflate the layout for this fragment\r\n        return inflater.inflate(R.layout.fragment_tickets, container, false);\r\n    }\r\n}
+===================================================================
+diff --git a/app/src/main/java/edu/sjsu/android/localeventfinder/TicketsFragment.java b/app/src/main/java/edu/sjsu/android/localeventfinder/TicketsFragment.java
+--- a/app/src/main/java/edu/sjsu/android/localeventfinder/TicketsFragment.java	
++++ b/app/src/main/java/edu/sjsu/android/localeventfinder/TicketsFragment.java	
+@@ -20,7 +20,6 @@
+     @Override
+     public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                              Bundle savedInstanceState) {
+-        // Inflate the layout for this fragment
+         return inflater.inflate(R.layout.fragment_tickets, container, false);
+     }
+ }
+\ No newline at end of file

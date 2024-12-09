@@ -1,0 +1,85 @@
+{
+    "logs": [
+        {
+            "outputFile": "edu.sjsu.android.localeventfinder.app-mergeDebugResources-37:/values-v23/values-v23.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\levic\\.gradle\\caches\\transforms-4\\27d2b7055c6619c6ddbecffb6a6b2609\\transformed\\appcompat-1.7.0\\res\\values-v23\\values-v23.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,20,34,35,36,39,43,44,45,46",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,190,325,400,487,1225,1975,2094,2221,2443,2667,2782,2889,3002",
+                        "endLines": "2,3,4,5,19,33,34,35,38,42,43,44,45,49",
+                        "endColumns": "134,134,74,86,12,12,118,126,12,12,114,106,112,12",
+                        "endOffsets": "185,320,395,482,1220,1970,2089,2216,2438,2662,2777,2884,2997,3227"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,14,28,42,43,44,47,51,52,53,54",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,190,325,400,852,1590,2340,2459,2586,2808,3032,3147,3254,3367",
+                        "endLines": "2,3,4,5,27,41,42,43,46,50,51,52,53,57",
+                        "endColumns": "134,134,74,86,12,12,118,126,12,12,114,106,112,12",
+                        "endOffsets": "185,320,395,482,1585,2335,2454,2581,2803,3027,3142,3249,3362,3592"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\levic\\AndroidStudioProjects\\cs175eventfinder\\app\\src\\main\\res\\values-v23\\themes.xml",
+                    "from": {
+                        "startLines": "3",
+                        "startColumns": "4",
+                        "startOffsets": "59",
+                        "endLines": "10",
+                        "endColumns": "12",
+                        "endOffsets": "492"
+                    },
+                    "to": {
+                        "startLines": "6",
+                        "startColumns": "4",
+                        "startOffsets": "487",
+                        "endLines": "13",
+                        "endColumns": "12",
+                        "endOffsets": "847"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\levic\\.gradle\\caches\\transforms-4\\3d163ea3a12011feedec2ca73c0368d0\\transformed\\cardview-1.0.0\\res\\values-v23\\values-v23.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endLines": "4",
+                        "endColumns": "12",
+                        "endOffsets": "200"
+                    },
+                    "to": {
+                        "startLines": "58",
+                        "startColumns": "4",
+                        "startOffsets": "3597",
+                        "endLines": "60",
+                        "endColumns": "12",
+                        "endOffsets": "3742"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\levic\\.gradle\\caches\\transforms-4\\01a2399c4f7790dc97698755bc4c8ea1\\transformed\\material-1.12.0\\res\\values-v23\\values-v23.xml",
+                    "from": {
+                        "startLines": "2,5,9,13,16,19,22,25,28,32",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,271,413,574,784,991,1198,1401,1603,1868",
+                        "endLines": "4,8,12,15,18,21,24,27,31,35",
+                        "endColumns": "10,10,10,10,10,10,10,10,10,10",
+                        "endOffsets": "266,408,569,779,986,1193,1396,1598,1863,2136"
+                    },
+                    "to": {
+                        "startLines": "61,64,68,72,75,78,81,84,87,91",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "3747,3963,4105,4266,4476,4683,4890,5093,5295,5560",
+                        "endLines": "63,67,71,74,77,80,83,86,90,94",
+                        "endColumns": "10,10,10,10,10,10,10,10,10,10",
+                        "endOffsets": "3958,4100,4261,4471,4678,4885,5088,5290,5555,5828"
+                    }
+                }
+            ]
+        }
+    ]
+}
