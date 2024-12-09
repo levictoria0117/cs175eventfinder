@@ -52,12 +52,12 @@
         "source": "C:\\Users\\levic\\.gradle\\daemon\\8.7\\edu.sjsu.android.localeventfinder.app-pngs-35:\\drawable-xxhdpi\\tickets_icon_selected_foreground.png"
     },
     {
-        "merged": "C:\\Users\\levic\\.gradle\\daemon\\8.7\\edu.sjsu.android.localeventfinder.app-debug-39:\\drawable_favorites_icon_unselected_background.xml.flat",
-        "source": "C:\\Users\\levic\\.gradle\\daemon\\8.7\\edu.sjsu.android.localeventfinder.app-main-41:\\drawable\\favorites_icon_unselected_background.xml"
-    },
-    {
         "merged": "C:\\Users\\levic\\.gradle\\daemon\\8.7\\edu.sjsu.android.localeventfinder.app-debug-39:\\mipmap-hdpi_favorites_icon_unselected.webp.flat",
         "source": "C:\\Users\\levic\\.gradle\\daemon\\8.7\\edu.sjsu.android.localeventfinder.app-main-41:\\mipmap-hdpi\\favorites_icon_unselected.webp"
+    },
+    {
+        "merged": "C:\\Users\\levic\\.gradle\\daemon\\8.7\\edu.sjsu.android.localeventfinder.app-debug-39:\\drawable_favorites_icon_unselected_background.xml.flat",
+        "source": "C:\\Users\\levic\\.gradle\\daemon\\8.7\\edu.sjsu.android.localeventfinder.app-main-41:\\drawable\\favorites_icon_unselected_background.xml"
     },
     {
         "merged": "C:\\Users\\levic\\.gradle\\daemon\\8.7\\edu.sjsu.android.localeventfinder.app-debug-39:\\mipmap-xhdpi_ic_launcher.webp.flat",
@@ -168,8 +168,8 @@
         "source": "C:\\Users\\levic\\.gradle\\daemon\\8.7\\edu.sjsu.android.localeventfinder.app-main-41:\\mipmap-mdpi\\account_icon_unselected.webp"
     },
     {
-        "merged": "edu.sjsu.android.localeventfinder.app-debug-39:/layout_fragment_home.xml.flat",
-        "source": "edu.sjsu.android.localeventfinder.app-main-41:/layout/fragment_home.xml"
+        "merged": "edu.sjsu.android.localeventfinder.app-debug-39:/drawable_rounded_bookmark_heart_24_selected.xml.flat",
+        "source": "edu.sjsu.android.localeventfinder.app-main-41:/drawable/rounded_bookmark_heart_24_selected.xml"
     },
     {
         "merged": "C:\\Users\\levic\\.gradle\\daemon\\8.7\\edu.sjsu.android.localeventfinder.app-debug-39:\\mipmap-xxhdpi_account_icon_selected_round.webp.flat",
@@ -374,6 +374,10 @@
     {
         "merged": "C:\\Users\\levic\\.gradle\\daemon\\8.7\\edu.sjsu.android.localeventfinder.app-debug-39:\\mipmap-xxhdpi_favorites_icon_unselected.webp.flat",
         "source": "C:\\Users\\levic\\.gradle\\daemon\\8.7\\edu.sjsu.android.localeventfinder.app-main-41:\\mipmap-xxhdpi\\favorites_icon_unselected.webp"
+    },
+    {
+        "merged": "C:\\Users\\levic\\.gradle\\daemon\\8.7\\edu.sjsu.android.localeventfinder.app-debug-39:\\layout_activity_search.xml.flat",
+        "source": "C:\\Users\\levic\\.gradle\\daemon\\8.7\\edu.sjsu.android.localeventfinder.app-main-41:\\layout\\activity_search.xml"
     },
     {
         "merged": "C:\\Users\\levic\\.gradle\\daemon\\8.7\\edu.sjsu.android.localeventfinder.app-debug-39:\\mipmap-xxhdpi_ic_launcher_round.webp.flat",
@@ -754,6 +758,10 @@
     {
         "merged": "C:\\Users\\levic\\.gradle\\daemon\\8.7\\edu.sjsu.android.localeventfinder.app-debug-39:\\mipmap-xxhdpi_tickets_icon_unselected.webp.flat",
         "source": "C:\\Users\\levic\\.gradle\\daemon\\8.7\\edu.sjsu.android.localeventfinder.app-main-41:\\mipmap-xxhdpi\\tickets_icon_unselected.webp"
+    },
+    {
+        "merged": "C:\\Users\\levic\\.gradle\\daemon\\8.7\\edu.sjsu.android.localeventfinder.app-debug-39:\\drawable_rounded_bookmark_heart_24_selected.xml.flat",
+        "source": "C:\\Users\\levic\\.gradle\\daemon\\8.7\\edu.sjsu.android.localeventfinder.app-main-41:\\drawable\\rounded_bookmark_heart_24_selected.xml"
     },
     {
         "merged": "C:\\Users\\levic\\.gradle\\daemon\\8.7\\edu.sjsu.android.localeventfinder.app-debug-39:\\drawable_tickets_icon_selected_background.xml.flat",

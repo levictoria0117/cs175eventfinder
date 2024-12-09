@@ -1,5 +1,6 @@
 R_DEF: Internal format may change without notice
 local
+array sort_options
 color black
 color event_temp_background
 color gray
@@ -36,6 +37,7 @@ drawable logo_white
 drawable outline_location_on_24
 drawable phone_icon
 drawable rounded_bookmark_heart_24
+drawable rounded_bookmark_heart_24_selected
 drawable rounded_button
 drawable rounded_edges
 drawable rounded_image

@@ -1,4 +1,4 @@
-edu.sjsu.android.localeventfinder.test.app-core-1.6.1-0 C:\Users\levic\.gradle\caches\transforms-4\5e328b6836497fa98f67dccffa9204a7\transformed\core-1.6.1\res
+edu.sjsu.android.localeventfinder.test.app-core-1.6.1-0 C:\Users\levic\.gradle\caches\transforms-4\61f9742b9d2e9c8ff2b3edf9526544e9\transformed\core-1.6.1\res
 edu.sjsu.android.localeventfinder.test.app-androidTest-1 C:\Users\levic\AndroidStudioProjects\cs175eventfinder\app\build\generated\res\resValues\androidTest\debug
 edu.sjsu.android.localeventfinder.test.app-mergeDebugAndroidTestResources-2 C:\Users\levic\AndroidStudioProjects\cs175eventfinder\app\build\intermediates\incremental\debugAndroidTest\mergeDebugAndroidTestResources\merged.dir
 edu.sjsu.android.localeventfinder.test.app-mergeDebugAndroidTestResources-3 C:\Users\levic\AndroidStudioProjects\cs175eventfinder\app\build\intermediates\incremental\debugAndroidTest\mergeDebugAndroidTestResources\stripped.dir

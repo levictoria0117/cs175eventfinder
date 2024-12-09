@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string-array name="sort_options">
+        <item>Alphabetical</item>
+        <item>Date</item>
+        <item>Location</item>
+    </string-array>
     <color name="black">#FF000000</color>
     <color name="event_temp_background">#2D52A2</color>
     <color name="gray">#ECECEC</color>

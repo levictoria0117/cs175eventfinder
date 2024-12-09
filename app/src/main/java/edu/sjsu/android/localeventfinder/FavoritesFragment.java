@@ -24,9 +24,8 @@ public class FavoritesFragment extends Fragment {
         recyclerView = view.findViewById(R.id.list);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        adapter = new MyAdapter(new ArrayList<>(), false);
+        adapter = new MyAdapter(new ArrayList<>(), false, getContext());
         adapter.setOnItemClickListener(new MyAdapter.OnItemClickListener() {
-            @Override
             public void onItemClick(Event event) {
                 navigateToEventDetail(event);
             }

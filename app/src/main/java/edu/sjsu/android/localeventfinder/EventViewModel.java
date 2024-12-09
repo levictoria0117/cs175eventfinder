@@ -16,6 +16,7 @@ public class EventViewModel extends AndroidViewModel {
         events = eventRepository.getFavoriteEvents();
     }
 
+
     public LiveData<List<Event>> getEvents() {
         return events;
     }
