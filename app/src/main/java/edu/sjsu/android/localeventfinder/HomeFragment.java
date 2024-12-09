@@ -1,5 +1,6 @@
 package edu.sjsu.android.localeventfinder;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -53,6 +54,22 @@ public class HomeFragment extends Fragment {
         nearestEventsAdapter = new MyAdapter(nearestEventsList, true);
         nearestEventsRecyclerView.setAdapter(nearestEventsAdapter);
 
+        // Set up click listeners for both adapters
+        moreEventsAdapter.setOnEventCardClickedListener(position -> {
+            Event event = moreEventsList.get(position);
+            Intent intent = new Intent(getContext(), EventDetailFragmentActivity.class);
+            intent.putExtra("event", event);  // Pass event data to the new Activity
+            startActivity(intent);
+        });
+
+        nearestEventsAdapter.setOnEventCardClickedListener(position -> {
+            Event event = nearestEventsList.get(position);
+            Intent intent = new Intent(getContext(), EventDetailFragmentActivity.class);
+            intent.putExtra("event", event);  // Pass event data to the new Activity
+            startActivity(intent);
+        });
+
         return view;
     }
 }
+

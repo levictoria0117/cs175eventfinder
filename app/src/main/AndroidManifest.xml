@@ -12,6 +12,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LocalEventFinder"
         tools:targetApi="31">
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_api_key" />
+
         <activity
             android:name=".SignUpActivity"
             android:exported="true" />
@@ -31,6 +36,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".EventDetailFragmentActivity">
+        </activity>
+
     </application>
 
 </manifest>

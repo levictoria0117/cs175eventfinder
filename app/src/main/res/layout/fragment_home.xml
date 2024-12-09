@@ -18,7 +18,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="start"
-            app:srcCompat="@drawable/aroundulogo" />
+            app:srcCompat="@drawable/aroundulogo_orange" />
 
         <Space
             android:layout_width="0dp"
