@@ -40,6 +40,10 @@
         <activity
             android:name=".EventDetailFragmentActivity">
         </activity>
+        <activity android:name=".SearchActivity"
+            android:label="Search Events"
+            android:theme="@style/Theme.LocalEventFinder" />
+
 
     </application>
 

@@ -11,6 +11,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+
 
 import java.util.ArrayList;
 
@@ -43,6 +45,7 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
+        // Initialize RecyclerViews and Adapters
         moreEventsRecyclerView = view.findViewById(R.id.more_events_recycler);
         moreEventsRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         moreEventsAdapter = new MyAdapter(moreEventsList, false);
@@ -54,18 +57,25 @@ public class HomeFragment extends Fragment {
         nearestEventsAdapter = new MyAdapter(nearestEventsList, true);
         nearestEventsRecyclerView.setAdapter(nearestEventsAdapter);
 
-        // Set up click listeners for both adapters
+        // Set click listeners
         moreEventsAdapter.setOnEventCardClickedListener(position -> {
             Event event = moreEventsList.get(position);
             Intent intent = new Intent(getContext(), EventDetailFragmentActivity.class);
-            intent.putExtra("event", event);  // Pass event data to the new Activity
+            intent.putExtra("event", event);
             startActivity(intent);
         });
 
         nearestEventsAdapter.setOnEventCardClickedListener(position -> {
             Event event = nearestEventsList.get(position);
             Intent intent = new Intent(getContext(), EventDetailFragmentActivity.class);
-            intent.putExtra("event", event);  // Pass event data to the new Activity
+            intent.putExtra("event", event);
+            startActivity(intent);
+        });
+
+        // click listener for the search button
+        ImageView searchIcon = view.findViewById(R.id.imageView3); // The search icon
+        searchIcon.setOnClickListener(v -> {
+            Intent intent = new Intent(getContext(), SearchActivity.class);
             startActivity(intent);
         });
 
