@@ -114,6 +114,7 @@
         android:textStyle="bold" />
 
     <TextView
+        android:id="@+id/change_email_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -124,11 +125,25 @@
         android:textSize="16sp" />
 
     <TextView
+        android:id="@+id/change_password_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:layout_marginLeft="35dp"
         android:text="Change Password"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="16sp" />
+
+
+    <!-- Logout TextView -->
+    <TextView
+        android:id="@+id/logout_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="35dp"
+        android:text="Logout"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="16sp" />
