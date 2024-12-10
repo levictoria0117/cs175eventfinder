@@ -72,11 +72,6 @@ All tasks have been completed and marked with priority 4, except for presentatio
    - Change username and password
    - Option to uninstall the application
 
-#### Demo Video
-For a detailed walkthrough of all features, please watch our demo video:
-```
-/documentation/demo/around-u-demo.mp4
-```
 
 ### Future Improvements
 
