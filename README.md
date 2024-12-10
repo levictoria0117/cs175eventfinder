@@ -26,7 +26,7 @@ The APK can be found in:
 #### Project Backlog
 The complete project backlog is available at:
 ```
-/documentation/backlog.xlsx
+/documentation/backlog.pdf
 ```
 All tasks have been completed and marked with priority 4, except for presentation-related items.
 
