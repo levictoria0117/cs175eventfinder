@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="sort_options">
+        <item>Alphabetical</item>
+        <item>Date</item>
+        <item>Location</item>
+    </string-array>
+    <color name="black">#FF000000</color>
+    <color name="event_temp_background">#2D52A2</color>
+    <color name="gray">#ECECEC</color>
+    <color name="inactive">#D9D9D9</color>
+    <color name="primary">#FD8350</color>
+    <color name="secondaryText">#656565</color>
+    <color name="white">#FBFBFD</color>
+    <string name="app_name">LocalEventFinder</string>
+    <string name="event_date_1">Dec 15, 2024</string>
+    <string name="event_date_2">Dec 20, 2024</string>
+    <string name="event_date_3">Dec 25, 2024</string>
+    <string name="event_date_4">Jan 05, 2025</string>
+    <string name="event_date_5">Jan 15, 2025</string>
+    <string name="event_desc_1">Experience Taylor Swift\'s record-breaking Eras Tour, featuring songs from all of her albums in this spectacular 3-hour show.</string>
+    <string name="event_desc_2">Watch the Golden State Warriors take on the Los Angeles Lakers in this exciting NBA matchup.</string>
+    <string name="event_desc_3">Three days of jazz, blues, and more featuring both legendary performers and emerging artists.</string>
+    <string name="event_desc_4">The Bay Area\'s premier comic and entertainment convention featuring celebrity guests, panels, and exhibits.</string>
+    <string name="event_desc_5">Coldplay returns to the Bay Area with their spectacular Music of the Spheres World Tour.</string>
+    <string name="event_location_1">Levi\'s Stadium, Santa Clara</string>
+    <string name="event_location_2">Chase Center, San Francisco</string>
+    <string name="event_location_3">Plaza de César Chávez, San Jose</string>
+    <string name="event_location_4">San Jose Convention Center</string>
+    <string name="event_location_5">Stanford Stadium, Palo Alto</string>
+    <string name="event_name_1">Taylor Swift | The Eras Tour</string>
+    <string name="event_name_2">Warriors vs Lakers</string>
+    <string name="event_name_3">San Jose Jazz Festival</string>
+    <string name="event_name_4">Silicon Valley Comic Con</string>
+    <string name="event_name_5">Coldplay World Tour</string>
+    <string name="favorites">Favorites</string>
+    <string name="favoritesPageLabel">Favorites</string>
+    <string name="google_maps_api_key">AIzaSyCig3hj3xbbBNHp0AkLLKATy1ANFQb6_DI</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="home">Home</string>
+    <string name="settings">Settings</string>
+    <string name="tickets">Tickets</string>
+    <style name="Base.Theme.LocalEventFinder" parent="Theme.Material3.DayNight.NoActionBar">
+        
+        <item name="colorPrimary">@color/primary</item>
+        <item name="backgroundColor">@color/white</item>
+        
+        <item name="android:statusBarColor">@color/white</item>
+    </style>
+    <style name="RoundedImageView" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">16dp</item>
+    </style>
+    <style name="Theme.LocalEventFinder" parent="Base.Theme.LocalEventFinder"/>
+</resources>

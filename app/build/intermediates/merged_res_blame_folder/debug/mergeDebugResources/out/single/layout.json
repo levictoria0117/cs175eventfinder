@@ -1,58 +1,46 @@
 [
     {
-        "merged": "C:\\Users\\levic\\.gradle\\daemon\\8.7\\edu.sjsu.android.localeventfinder.app-mergeDebugResources-38:\\layout\\fragment_home.xml",
-        "source": "C:\\Users\\levic\\.gradle\\daemon\\8.7\\edu.sjsu.android.localeventfinder.app-main-41:\\layout\\fragment_home.xml"
+        "merged": "edu.sjsu.android.localeventfinder.app-mergeDebugResources-38:/layout/activity_event_detail.xml",
+        "source": "edu.sjsu.android.localeventfinder.app-main-41:/layout/activity_event_detail.xml"
     },
     {
-        "merged": "C:\\Users\\levic\\.gradle\\daemon\\8.7\\edu.sjsu.android.localeventfinder.app-mergeDebugResources-38:\\layout\\activity_search.xml",
-        "source": "C:\\Users\\levic\\.gradle\\daemon\\8.7\\edu.sjsu.android.localeventfinder.app-main-41:\\layout\\activity_search.xml"
+        "merged": "edu.sjsu.android.localeventfinder.app-mergeDebugResources-38:/layout/fragment_tickets.xml",
+        "source": "edu.sjsu.android.localeventfinder.app-main-41:/layout/fragment_tickets.xml"
     },
     {
-        "merged": "C:\\Users\\levic\\.gradle\\daemon\\8.7\\edu.sjsu.android.localeventfinder.app-mergeDebugResources-38:\\layout\\fragment_favorites.xml",
-        "source": "C:\\Users\\levic\\.gradle\\daemon\\8.7\\edu.sjsu.android.localeventfinder.app-main-41:\\layout\\fragment_favorites.xml"
+        "merged": "edu.sjsu.android.localeventfinder.app-mergeDebugResources-38:/layout/activity_sign_up.xml",
+        "source": "edu.sjsu.android.localeventfinder.app-main-41:/layout/activity_sign_up.xml"
     },
     {
-        "merged": "C:\\Users\\levic\\.gradle\\daemon\\8.7\\edu.sjsu.android.localeventfinder.app-mergeDebugResources-38:\\layout\\activity_login.xml",
-        "source": "C:\\Users\\levic\\.gradle\\daemon\\8.7\\edu.sjsu.android.localeventfinder.app-main-41:\\layout\\activity_login.xml"
+        "merged": "edu.sjsu.android.localeventfinder.app-mergeDebugResources-38:/layout/activity_login.xml",
+        "source": "edu.sjsu.android.localeventfinder.app-main-41:/layout/activity_login.xml"
     },
     {
-        "merged": "C:\\Users\\levic\\.gradle\\daemon\\8.7\\edu.sjsu.android.localeventfinder.app-mergeDebugResources-38:\\layout\\activity_main.xml",
-        "source": "C:\\Users\\levic\\.gradle\\daemon\\8.7\\edu.sjsu.android.localeventfinder.app-main-41:\\layout\\activity_main.xml"
-    },
-    {
-        "merged": "C:\\Users\\levic\\.gradle\\daemon\\8.7\\edu.sjsu.android.localeventfinder.app-mergeDebugResources-38:\\layout\\small_event_card_layout.xml",
-        "source": "C:\\Users\\levic\\.gradle\\daemon\\8.7\\edu.sjsu.android.localeventfinder.app-main-41:\\layout\\small_event_card_layout.xml"
-    },
-    {
-        "merged": "C:\\Users\\levic\\.gradle\\daemon\\8.7\\edu.sjsu.android.localeventfinder.app-mergeDebugResources-38:\\layout\\activity_event_detail.xml",
-        "source": "C:\\Users\\levic\\.gradle\\daemon\\8.7\\edu.sjsu.android.localeventfinder.app-main-41:\\layout\\activity_event_detail.xml"
+        "merged": "edu.sjsu.android.localeventfinder.app-mergeDebugResources-38:/layout/fragment_settings.xml",
+        "source": "edu.sjsu.android.localeventfinder.app-main-41:/layout/fragment_settings.xml"
     },
     {
         "merged": "edu.sjsu.android.localeventfinder.app-mergeDebugResources-38:/layout/large_event_card_layout.xml",
         "source": "edu.sjsu.android.localeventfinder.app-main-41:/layout/large_event_card_layout.xml"
     },
     {
-        "merged": "C:\\Users\\levic\\.gradle\\daemon\\8.7\\edu.sjsu.android.localeventfinder.app-mergeDebugResources-38:\\layout\\fragment_tickets.xml",
-        "source": "C:\\Users\\levic\\.gradle\\daemon\\8.7\\edu.sjsu.android.localeventfinder.app-main-41:\\layout\\fragment_tickets.xml"
+        "merged": "edu.sjsu.android.localeventfinder.app-mergeDebugResources-38:/layout/activity_landing_page.xml",
+        "source": "edu.sjsu.android.localeventfinder.app-main-41:/layout/activity_landing_page.xml"
+    },
+    {
+        "merged": "edu.sjsu.android.localeventfinder.app-mergeDebugResources-38:/layout/fragment_home.xml",
+        "source": "edu.sjsu.android.localeventfinder.app-main-41:/layout/fragment_home.xml"
     },
     {
         "merged": "edu.sjsu.android.localeventfinder.app-mergeDebugResources-38:/layout/small_event_card_layout.xml",
         "source": "edu.sjsu.android.localeventfinder.app-main-41:/layout/small_event_card_layout.xml"
     },
     {
-        "merged": "C:\\Users\\levic\\.gradle\\daemon\\8.7\\edu.sjsu.android.localeventfinder.app-mergeDebugResources-38:\\layout\\activity_landing_page.xml",
-        "source": "C:\\Users\\levic\\.gradle\\daemon\\8.7\\edu.sjsu.android.localeventfinder.app-main-41:\\layout\\activity_landing_page.xml"
+        "merged": "edu.sjsu.android.localeventfinder.app-mergeDebugResources-38:/layout/activity_main.xml",
+        "source": "edu.sjsu.android.localeventfinder.app-main-41:/layout/activity_main.xml"
     },
     {
-        "merged": "C:\\Users\\levic\\.gradle\\daemon\\8.7\\edu.sjsu.android.localeventfinder.app-mergeDebugResources-38:\\layout\\fragment_settings.xml",
-        "source": "C:\\Users\\levic\\.gradle\\daemon\\8.7\\edu.sjsu.android.localeventfinder.app-main-41:\\layout\\fragment_settings.xml"
-    },
-    {
-        "merged": "C:\\Users\\levic\\.gradle\\daemon\\8.7\\edu.sjsu.android.localeventfinder.app-mergeDebugResources-38:\\layout\\activity_sign_up.xml",
-        "source": "C:\\Users\\levic\\.gradle\\daemon\\8.7\\edu.sjsu.android.localeventfinder.app-main-41:\\layout\\activity_sign_up.xml"
-    },
-    {
-        "merged": "C:\\Users\\levic\\.gradle\\daemon\\8.7\\edu.sjsu.android.localeventfinder.app-mergeDebugResources-38:\\layout\\large_event_card_layout.xml",
-        "source": "C:\\Users\\levic\\.gradle\\daemon\\8.7\\edu.sjsu.android.localeventfinder.app-main-41:\\layout\\large_event_card_layout.xml"
+        "merged": "edu.sjsu.android.localeventfinder.app-mergeDebugResources-38:/layout/fragment_favorites.xml",
+        "source": "edu.sjsu.android.localeventfinder.app-main-41:/layout/fragment_favorites.xml"
     }
 ]
