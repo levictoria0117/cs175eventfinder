@@ -26,7 +26,7 @@ The APK can be found in:
 #### Project Backlog
 The complete project backlog is available at:
 ```
-/documentation/backlog.xlsx
+/documentation/backlog.pdf
 ```
 All tasks have been completed and marked with priority 4, except for presentation-related items.
 
@@ -72,11 +72,6 @@ All tasks have been completed and marked with priority 4, except for presentatio
    - Change username and password
    - Option to uninstall the application
 
-#### Demo Video
-For a detailed walkthrough of all features, please watch our demo video:
-```
-/documentation/demo/around-u-demo.mp4
-```
 
 ### Future Improvements
 
@@ -102,9 +97,8 @@ The following features are planned for future releases:
 
 #### Final Report
 The comprehensive final report can be found at:
-```
-/documentation/final-report.pdf
-```
+https://docs.google.com/document/d/1Y728B0BpB2gObv7VqLz4e48yApqTrybda85W1OuunYs/edit?usp=sharing
+
 The report includes:
 - Detailed project overview
 - Technical architecture
