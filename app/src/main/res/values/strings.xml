@@ -39,8 +39,18 @@
     <string name="ticketsPageTitle">Tickets</string>
     <string name="ticket_detail">Ticket Detail</string>
     <string name="google_maps_api_key">AIzaSyCig3hj3xbbBNHp0AkLLKATy1ANFQb6_DI</string>
+  
+    <!-- Sorting -->
+    <string-array name="sort_options">
+        <item>Date (newest first)</item>
+        <item>Date (oldest first)</item>
+        <item>Name (A-Z)</item>
+        <item>Name (Z-A)</item>
+    </string-array>
+  
     <string name="order_id">Order ID</string>
     <string name="name">Name</string>
     <string name="date">Date</string>
     <string name="time">Time</string>
+  
 </resources>

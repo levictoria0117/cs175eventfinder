@@ -38,6 +38,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".EventDetailFragmentActivity">
+        </activity>
+        <activity android:name=".SearchActivity"
+            android:label="Search Events"
+            android:theme="@style/Theme.LocalEventFinder" />
+
+
         <activity android:name=".EventDetailFragmentActivity"></activity>
     </application>
 
