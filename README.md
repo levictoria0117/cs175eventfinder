@@ -20,7 +20,7 @@
 #### APK File
 The APK can be found in:
 ```
-/builds/around-u-release.apk
+/build/around-u-release.apk
 ```
 
 #### Project Backlog
