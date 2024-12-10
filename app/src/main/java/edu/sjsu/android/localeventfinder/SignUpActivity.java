@@ -22,6 +22,23 @@ public class SignUpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
+        Button signIn = findViewById(R.id.button_sign_in);
+        Button guest = findViewById(R.id.guest_button);
+
+        signIn.setOnClickListener(v -> {
+            Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
+            startActivity(intent);
+        });
+
+        View.OnClickListener navigateToMain = v -> {
+            Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
+            startActivity(intent);
+        };
+
+        guest.setOnClickListener(navigateToMain);
+
+        userDatabaseHelper = new UserDatabaseHelper(this);
+
         // Initialize UI elements
         firstNameEditText = (TextInputEditText) ((TextInputLayout) findViewById(R.id.first_name)).getEditText();
         lastNameEditText = (TextInputEditText) ((TextInputLayout) findViewById(R.id.last_name)).getEditText();
@@ -52,6 +69,8 @@ public class SignUpActivity extends AppCompatActivity {
         String lName = lastNameEditText != null ? lastNameEditText.getText().toString().trim() : "";
         String email = emailEditText != null ? emailEditText.getText().toString().trim() : "";
         String password = passwordEditText != null ? passwordEditText.getText().toString().trim() : "";
+        String address = "Add Address";
+        String phone = "Add Phone";
 
         // Validate inputs
         if (email.isEmpty() || password.isEmpty()) {
@@ -75,12 +94,13 @@ public class SignUpActivity extends AppCompatActivity {
         } else {
             // Insert user into the database
             boolean isInserted = userDatabaseHelper.insertData(email, password, fName, lName);
+          
             if (isInserted) {
                 Toast.makeText(this, "Sign Up Successful!", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
                 startActivity(intent);
             } else {
-                Toast.makeText(this, "Sign Up Failed. Please try again.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Sign Up Failed. Please try again.", Toast.LENGTH_LONG).show();
             }
         }
     }

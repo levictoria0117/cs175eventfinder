@@ -73,12 +73,17 @@ public class LoginActivity extends AppCompatActivity {
             Toast.makeText(this, "Please enter both email and password.", Toast.LENGTH_SHORT).show();
             return;
         }
-
+      
         try {
             boolean isAuthenticated = userDatabaseHelper.checkEmailPassword(email, password);
             if (isAuthenticated) {
                 Toast.makeText(this, "Login Successful!", Toast.LENGTH_SHORT).show();
 
+                // Pass user email to MainActivity
+                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                intent.putExtra("USER_EMAIL", email);
+                startActivity(intent);
+              
                 // Save "Keep Me Signed In" preference
                 if (keepSignedInCheckbox.isChecked()) {
                     SharedPreferences.Editor editor = sharedPreferences.edit();

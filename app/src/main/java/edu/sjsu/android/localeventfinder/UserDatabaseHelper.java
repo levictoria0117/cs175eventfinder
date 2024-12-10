@@ -21,40 +21,41 @@ public class UserDatabaseHelper extends SQLiteOpenHelper {
     private static final String COL_PASSWORD = "password";
     private static final String COL_FNAME = "fName";
     private static final String COL_LNAME = "lName";
+    private static final String COL_ADDRESS = "address";
+    private static final String COL_PHONE = "phone";
 
     public UserDatabaseHelper(@Nullable Context context) {
         super(context, DATABASE_NAME, null, 2);
     }
 
     @Override
-    public void onCreate(SQLiteDatabase db) {
-        // Create table for users
-        db.execSQL("CREATE TABLE " + TABLE_NAME + " (" +
-                COL_EMAIL + " TEXT PRIMARY KEY, " +
-                COL_PASSWORD + " TEXT, " +
-                COL_FNAME + " TEXT, " +
-                COL_LNAME + " TEXT)");
+    public void onCreate(SQLiteDatabase MyDatabase) {
+        MyDatabase.execSQL("create table allusers(email TEXT PRIMARY KEY, password TEXT, fName TEXT, lName TEXT, address TEXT, phone TEXT)");
     }
 
+    // not used
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // Drop the table if it exists and recreate it
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
         onCreate(db);
     }
-
-    // Insert user data
-    public Boolean insertData(String email, String password, String fName, String lName) {
-        SQLiteDatabase db = this.getWritableDatabase();
+  
+    public Boolean insertData(String email, String password, String fName, String lName, String address, String phone) {
+        SQLiteDatabase MyDatabase = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
 
         // Hash the password before storing
         String hashedPassword = hashPassword(password);
-
+  
+        // Insert user data
         contentValues.put(COL_EMAIL, email);
-        contentValues.put(COL_PASSWORD, hashedPassword);
+        contentValues.put(COL_PASSWORD, password);
         contentValues.put(COL_FNAME, fName);
         contentValues.put(COL_LNAME, lName);
+        contentValues.put(COL_ADDRESS, address);
+        contentValues.put(COL_PHONE, phone);
+        long result = MyDatabase.insert("allusers", null, contentValues);
 
         try {
             long result = db.insert(TABLE_NAME, null, contentValues);
@@ -114,4 +115,56 @@ public class UserDatabaseHelper extends SQLiteOpenHelper {
             throw new RuntimeException("Error hashing password", e);
         }
     }
+
+    public Cursor getUserInfo(String email) {
+        SQLiteDatabase MyDatabase = this.getReadableDatabase();
+        return MyDatabase.rawQuery("select fName, lName, address, phone from allusers where email = ?", new String[]{email});
+    }
+
+    public boolean updateUserName(String email, String newName) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("fName", newName.split(" ")[0]);
+        contentValues.put("lName", newName.split(" ")[1]);
+
+        int result = db.update("allusers", contentValues, "email = ?", new String[]{email});
+
+        if (result < 0) {
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+
+    public boolean updateUserAddress(String email, String newAddress) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("address", newAddress);
+
+        int result = db.update("allusers", contentValues, "email = ?", new String[]{email});
+
+        if (result < 0) {
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+
+    public boolean updateUserPhone(String email, String newPhone) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("phone", newPhone);
+
+        int result = db.update("allusers", contentValues, "email = ?", new String[]{email});
+
+        if (result < 0) {
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+
 }

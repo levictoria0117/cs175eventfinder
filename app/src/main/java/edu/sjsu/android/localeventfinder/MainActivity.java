@@ -1,5 +1,6 @@
 package edu.sjsu.android.localeventfinder;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.TypedValue;
 import android.widget.ImageView;
@@ -14,11 +15,15 @@ public class MainActivity extends AppCompatActivity {
 
     private TabLayout tabLayout;
     private ViewPager viewPager;
+    private String userEmail;  // Store the email of the logged-in user
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // Get user email from intent (passed from LoginActivity)
+        userEmail = getIntent().getStringExtra("USER_EMAIL");
 
         tabLayout = findViewById(R.id.tabLayout);
         viewPager = findViewById(R.id.viewPager);
@@ -29,7 +34,14 @@ public class MainActivity extends AppCompatActivity {
         vpAdapter.addFragment(new HomeFragment(), "Home");
         vpAdapter.addFragment(new FavoritesFragment(), "Favorite");
         vpAdapter.addFragment(new TicketsFragment(), "Tickets");
-        vpAdapter.addFragment(new SettingsFragment(), "Settings");
+
+        // Pass user email to SettingsFragment
+        SettingsFragment settingsFragment = new SettingsFragment();
+        Bundle bundle = new Bundle();
+        bundle.putString("USER_EMAIL", userEmail);
+        settingsFragment.setArguments(bundle);
+        vpAdapter.addFragment(settingsFragment, "Settings");
+
         viewPager.setAdapter(vpAdapter);
 
         setupTabIcons();
