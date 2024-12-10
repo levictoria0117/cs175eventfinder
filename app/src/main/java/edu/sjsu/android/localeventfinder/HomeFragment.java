@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 
 import java.util.ArrayList;
@@ -72,9 +73,16 @@ public class HomeFragment extends Fragment {
             startActivity(intent);
         });
 
-        // click listener for the search button
-        ImageView searchIcon = view.findViewById(R.id.imageView3); // The search icon
+        // Click listener for the search button
+        ImageView searchIcon = view.findViewById(R.id.imageView3);
         searchIcon.setOnClickListener(v -> {
+            Intent intent = new Intent(getContext(), SearchActivity.class);
+            startActivity(intent);
+        });
+
+        // Click listener for the "See All" button
+        TextView seeAllButton = view.findViewById(R.id.see_all);
+        seeAllButton.setOnClickListener(v -> {
             Intent intent = new Intent(getContext(), SearchActivity.class);
             startActivity(intent);
         });

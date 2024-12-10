@@ -36,4 +36,12 @@
     <string name="event_desc_4">The Bay Area\'s premier comic and entertainment convention featuring celebrity guests, panels, and exhibits.</string>
     <string name="event_desc_5">Coldplay returns to the Bay Area with their spectacular Music of the Spheres World Tour.</string>
     <string name="google_maps_api_key">AIzaSyCig3hj3xbbBNHp0AkLLKATy1ANFQb6_DI</string>
+
+    <!-- Sorting -->
+    <string-array name="sort_options">
+        <item>Date (newest first)</item>
+        <item>Date (oldest first)</item>
+        <item>Name (A-Z)</item>
+        <item>Name (Z-A)</item>
+    </string-array>
 </resources>
