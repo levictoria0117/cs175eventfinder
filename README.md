@@ -102,9 +102,8 @@ The following features are planned for future releases:
 
 #### Final Report
 The comprehensive final report can be found at:
-```
-/documentation/final-report.pdf
-```
+https://docs.google.com/document/d/1Y728B0BpB2gObv7VqLz4e48yApqTrybda85W1OuunYs/edit?usp=sharing
+
 The report includes:
 - Detailed project overview
 - Technical architecture
