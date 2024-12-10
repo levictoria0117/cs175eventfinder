@@ -1,6 +1,7 @@
 package edu.sjsu.android.localeventfinder;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -42,43 +43,18 @@ public class TicketsFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_tickets, container, false);
 
-        // Set the adapter
-//        if (view instanceof RecyclerView) {
-//            Context context = view.getContext();
-//            RecyclerView recyclerView = (RecyclerView) view;
-//            MyAdapter adapter = new MyAdapter(ticketList, false);
-//            adapter.setOnEventCardClickedListener(this::onClick);
-//            recyclerView.setAdapter(adapter);
-//        }
-
         ticketsRecyclerView = view.findViewById(R.id.ticket_recycler_view);
         ticketsRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         ticketsAdapter = new TicketAdapter(ticketList);
-        ticketsAdapter.setOnEventCardClickedListener(this::onClick);
         ticketsRecyclerView.setAdapter(ticketsAdapter);
 
+        ticketsAdapter.setOnEventCardClickedListener(position -> {
+            Event event = ticketList.get(position);
+            Intent intent = new Intent(getContext(), TicketDetailActivity.class);
+            intent.putExtra("event", event);
+            startActivity(intent);
+        });
+
         return view;
-    }
-
-    public void onClick(int position) {
-        goDetail(position);
-    }
-
-    public void goDetail(int position) {
-        Event ticket = ticketList.get(position);
-        Log.d("TicketsFragment", "Selected ticket position: " + position);
-        Log.d("TicketsFragment", "Ticket details: " + ticket.toString());
-
-        Bundle bundle = new Bundle();
-        bundle.putParcelable(requireContext().getString(R.string.argument_key), ticket);
-        Log.d("TicketsFragment", "Bundle created with ticket");
-
-        NavController controller = Navigation.findNavController(requireView());
-        try {
-            controller.navigate(R.id.ticketDetailFragment, bundle);
-            Log.d("TicketsFragment", "Navigation attempted");
-        } catch (Exception e) {
-            Log.e("TicketsFragment", "Navigation failed", e);
-        }
     }
 }

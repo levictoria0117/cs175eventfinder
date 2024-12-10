@@ -85,11 +85,15 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <CheckBox
-            android:id="@+id/checkBox"
-            android:layout_width="212dp"
+            android:id="@+id/keep_signed_in_checkbox"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_gravity="center"
             android:buttonTint="@color/primary"
-            android:text="Keep me signed in" />
+            android:text="Keep me signed in"
+            android:textColor="@color/black"
+            android:textSize="15sp" />
 
         <Button
             android:id="@+id/signin_button"
