@@ -55,10 +55,9 @@ public class UserDatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(COL_LNAME, lName);
         contentValues.put(COL_ADDRESS, address);
         contentValues.put(COL_PHONE, phone);
-        long result = MyDatabase.insert("allusers", null, contentValues);
 
         try {
-            long result = db.insert(TABLE_NAME, null, contentValues);
+            long result = MyDatabase.insert(TABLE_NAME, null, contentValues);
             return result != -1;
         } catch (Exception e) {
             Log.e("UserDatabaseHelper", "Error inserting data", e);

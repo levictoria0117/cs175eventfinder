@@ -2,6 +2,7 @@ package edu.sjsu.android.localeventfinder;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -93,7 +94,7 @@ public class SignUpActivity extends AppCompatActivity {
             Toast.makeText(this, "This email is already registered. Please log in.", Toast.LENGTH_SHORT).show();
         } else {
             // Insert user into the database
-            boolean isInserted = userDatabaseHelper.insertData(email, password, fName, lName);
+            boolean isInserted = userDatabaseHelper.insertData(email, password, fName, lName, address, phone);
           
             if (isInserted) {
                 Toast.makeText(this, "Sign Up Successful!", Toast.LENGTH_SHORT).show();
