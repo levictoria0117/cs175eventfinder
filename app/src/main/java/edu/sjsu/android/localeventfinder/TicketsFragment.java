@@ -25,29 +25,28 @@ public class TicketsFragment extends Fragment {
     private ArrayList<Event> ticketList;
 
     public TicketsFragment() {
-
+        // Required empty public constructor
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ticketList = new ArrayList<>();
-        ticketList.add(new Event(R.drawable.event_temp_background, R.string.event_name_5, R.string.event_location_5, R.string.event_date_5, R.string.event_desc_5));
-        ticketList.add(new Event(R.drawable.event_temp_background, R.string.event_name_2, R.string.event_location_2, R.string.event_date_2, R.string.event_desc_2));
-        ticketList.add(new Event(R.drawable.event_temp_background, R.string.event_name_3, R.string.event_location_3, R.string.event_date_3, R.string.event_desc_3));
+
+        ticketList.add(new Event("https://example.com/event_image_1.jpg", "Event Name 5", "Event Location 5", "2024-12-09", "Event Description 5", 37.7749, -122.4194));
+        ticketList.add(new Event("https://example.com/event_image_2.jpg", "Event Name 2", "Event Location 2", "2024-12-10", "Event Description 2", 34.0522, -118.2437));
+        ticketList.add(new Event("https://example.com/event_image_3.jpg", "Event Name 3", "Event Location 3", "2024-12-11", "Event Description 3", 40.7128, -74.0060));
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_tickets, container, false);
 
         ticketsRecyclerView = view.findViewById(R.id.ticket_recycler_view);
         ticketsRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         ticketsAdapter = new TicketAdapter(ticketList);
         ticketsRecyclerView.setAdapter(ticketsAdapter);
-
         ticketsAdapter.setOnEventCardClickedListener(position -> {
             Event event = ticketList.get(position);
             Intent intent = new Intent(getContext(), TicketDetailActivity.class);

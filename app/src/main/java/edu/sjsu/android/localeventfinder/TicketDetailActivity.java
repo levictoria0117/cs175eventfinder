@@ -14,6 +14,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.bumptech.glide.Glide;
 import com.google.android.material.button.MaterialButton;
 
 public class TicketDetailActivity extends AppCompatActivity {
@@ -52,33 +53,30 @@ public class TicketDetailActivity extends AppCompatActivity {
             TextView eventDate = findViewById(R.id.dateTextView);
             TextView eventTime = findViewById(R.id.timeTextView);
 
-            eventImage.setImageResource(event.getImageID());
-            eventName.setText(event.getEventNameID());
-            eventLocation.setText(event.getLocationID());
+            Glide.with(this)
+                    .load(event.getImageUrl())
+                    .into(eventImage);
+
+            // Set text views with the event details
+            eventName.setText(event.getEventName());
+            eventLocation.setText(event.getLocation());
             eventTicketOrderId.setText("#78492");
             userName.setText("John Doe");
-            eventDate.setText(event.getDateID());
-            eventTime.setText(event.getDateID());
+            eventDate.setText(event.getDate());
+            eventTime.setText(event.getDate());
         }
     }
 
     private void openGoogleMaps() {
         if (event != null) {
             try {
-                String location = "1 Washington Square, San Jose, CA 95192";
-
-                // Create a URI for Google Maps with the location
+                String location = event.getLatitude() + "," + event.getLongitude();
                 Uri gmmIntentUri = Uri.parse("google.navigation:q=" + Uri.encode(location));
-
-                // Create an Intent to open Google Maps
                 Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
                 mapIntent.setPackage("com.google.android.apps.maps");
-
-                // Verify that Google Maps is installed
                 if (mapIntent.resolveActivity(getPackageManager()) != null) {
                     startActivity(mapIntent);
                 } else {
-                    // If Google Maps isn't installed, open in browser
                     Uri browserUri = Uri.parse("https://www.google.com/maps/search/?api=1&query=" + Uri.encode(location));
                     Intent browserIntent = new Intent(Intent.ACTION_VIEW, browserUri);
                     startActivity(browserIntent);
@@ -88,5 +86,4 @@ public class TicketDetailActivity extends AppCompatActivity {
             }
         }
     }
-
 }

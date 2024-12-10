@@ -2,18 +2,10 @@ package edu.sjsu.android.localeventfinder;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.TextView;
-
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Intent;
-import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentActivity;
+import com.bumptech.glide.Glide;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -31,13 +23,8 @@ public class EventDetailFragmentActivity extends AppCompatActivity implements On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event_detail);
 
-        ImageButton backButton = findViewById(R.id.backButton);
-        backButton.setOnClickListener(v -> {
-            finish();
-        });
-
         Intent intent = getIntent();
-        event = intent.getParcelableExtra("event");
+        event = (Event) intent.getParcelableExtra("event");
 
         if (event != null) {
             ImageView eventImage = findViewById(R.id.event_image);
@@ -46,13 +33,19 @@ public class EventDetailFragmentActivity extends AppCompatActivity implements On
             TextView eventDate = findViewById(R.id.event_date);
             TextView eventDescription = findViewById(R.id.event_description);
 
-            eventImage.setImageResource(event.getImageID());
-            eventName.setText(event.getEventNameID());
-            eventLocation.setText(event.getLocationID());
-            eventDate.setText(event.getDateID());
-            eventDescription.setText(event.getDescriptionID());
+            // Load event image using Glide
+            Glide.with(this)
+                    .load(event.getImageUrl())
+                    .into(eventImage);
+
+            // Set event details
+            eventName.setText(event.getEventName());
+            eventLocation.setText(event.getLocation());
+            eventDate.setText(event.getDate());
+            eventDescription.setText(event.getDescription());
         }
 
+        // Initialize and set up the map
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         if (mapFragment != null) {
             mapFragment.getMapAsync(this);
@@ -63,14 +56,18 @@ public class EventDetailFragmentActivity extends AppCompatActivity implements On
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        // Assuming the event has latitude and longitude data
-        double latitude = event.getLatitude(); // Example: 37.7749
-        double longitude = event.getLongitude(); // Example: -122.4194
+        if (event != null) {
+            double latitude = event.getLatitude();
+            double longitude = event.getLongitude();
 
-        LatLng eventLocation = new LatLng(latitude, longitude);
-        mMap.addMarker(new MarkerOptions().position(eventLocation));
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(eventLocation, 15)); // Zoom level of the map
+            LatLng eventLocation = new LatLng(latitude, longitude);
+            mMap.addMarker(new MarkerOptions().position(eventLocation).title(event.getEventName()));
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(eventLocation, 15));
+        }
     }
 }
+
+
+
 
 
