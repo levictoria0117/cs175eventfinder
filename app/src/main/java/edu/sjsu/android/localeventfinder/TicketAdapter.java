@@ -7,15 +7,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.bumptech.glide.Glide;
-
 import java.util.ArrayList;
 
 public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.ViewHolder> {
 
     private final ArrayList<Event> eventList;
     private OnEventCardClickedListener clickListener;
+
 
     public TicketAdapter(ArrayList<Event> eventList) {
         this.eventList = eventList;
@@ -29,24 +27,18 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.ViewHolder
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_ticket, parent, false);
+                .inflate(R.layout.item_ticket,
+                        parent, false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Event event = eventList.get(position);
-
-        // Set image URL for the event image (use an image loading library like Glide or Picasso)
-        // Assuming you are using an image loading library like Glide or Picasso
-        Glide.with(holder.itemView.getContext())
-                .load(event.getImageUrl())
-                .into(holder.eventImage);
-
-        // Set text fields for event name, location, and date
-        holder.eventName.setText(event.getEventName());
-        holder.eventLocation.setText(event.getLocation());
-        holder.eventDate.setText(event.getDate());
+        holder.eventImage.setImageResource(event.getImageID());
+        holder.eventName.setText(event.getEventNameID());
+        holder.eventLocation.setText(event.getLocationID());
+        holder.eventDate.setText(event.getDateID());
 
         holder.itemView.setOnClickListener(v -> {
             if (clickListener != null) {

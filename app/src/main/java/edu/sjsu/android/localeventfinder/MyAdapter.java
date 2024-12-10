@@ -9,16 +9,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
-import com.bumptech.glide.Glide;
-import java.util.ArrayList;
-
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
     private final ArrayList<Event> eventList;
@@ -46,28 +36,10 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Event event = eventList.get(position);
-
-        if (holder.eventImage != null) {
-            Glide.with(holder.eventImage.getContext())
-                    .load(event.getImageUrl())
-                    .into(holder.eventImage);
-        }
-
-        if (holder.eventName != null) {
-            holder.eventName.setText(event.getEventName());
-        }
-
-        if (holder.eventLocation != null) {
-            holder.eventLocation.setText(event.getLocation());
-        }
-
-        if (holder.eventDate != null) {
-            holder.eventDate.setText(event.getDate());
-        }
-
-        if (holder.eventDescription != null) {
-            holder.eventDescription.setVisibility(View.GONE);
-        }
+        holder.eventImage.setImageResource(event.getImageID());
+        holder.eventName.setText(event.getEventNameID());
+        holder.eventLocation.setText(event.getLocationID());
+        holder.eventDate.setText(event.getDateID());
 
         holder.itemView.setOnClickListener(v -> {
             if (clickListener != null) {
@@ -86,7 +58,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         public final TextView eventName;
         public final TextView eventLocation;
         public final TextView eventDate;
-        public final TextView eventDescription;
 
         public ViewHolder(View view) {
             super(view);
@@ -94,13 +65,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
             eventName = view.findViewById(R.id.event_name);
             eventLocation = view.findViewById(R.id.event_location);
             eventDate = view.findViewById(R.id.event_date);
-            eventDescription = view.findViewById(R.id.event_description);
-
-            if (eventName == null || eventLocation == null || eventDate == null || eventDescription == null) {
-                throw new NullPointerException("Missing TextViews in the layout XML file.");
-            }
         }
     }
 }
-
-
