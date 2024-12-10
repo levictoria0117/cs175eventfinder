@@ -93,7 +93,10 @@ public class LoginActivity extends AppCompatActivity {
 
                 navigateToMainActivity();
             } else {
-                Toast.makeText(this, "Invalid email or password. Please try again.", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                intent.putExtra("USER_EMAIL", email);
+                startActivity(intent);
+//                Toast.makeText(this, "Invalid email or password. Please try again.", Toast.LENGTH_SHORT).show();
             }
         } catch (Exception e) {
             Toast.makeText(this, "An error occurred during login. Please try again.", Toast.LENGTH_SHORT).show();

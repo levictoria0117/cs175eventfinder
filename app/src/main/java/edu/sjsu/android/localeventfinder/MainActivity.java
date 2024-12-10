@@ -9,20 +9,23 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 import com.google.android.material.tabs.TabLayout;
-import java.util.Objects;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
     private TabLayout tabLayout;
     private ViewPager viewPager;
-    private String userEmail;  // Store the email of the logged-in user
+    private String userEmail;
+    private MyAdapter myAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Get user email from intent (passed from LoginActivity)
+        myAdapter = new MyAdapter(new ArrayList<>(), true);
+
         userEmail = getIntent().getStringExtra("USER_EMAIL");
 
         tabLayout = findViewById(R.id.tabLayout);
@@ -35,7 +38,6 @@ public class MainActivity extends AppCompatActivity {
         vpAdapter.addFragment(new FavoritesFragment(), "Favorite");
         vpAdapter.addFragment(new TicketsFragment(), "Tickets");
 
-        // Pass user email to SettingsFragment
         SettingsFragment settingsFragment = new SettingsFragment();
         Bundle bundle = new Bundle();
         bundle.putString("USER_EMAIL", userEmail);
@@ -47,10 +49,17 @@ public class MainActivity extends AppCompatActivity {
         setupTabIcons();
     }
 
+    public MyAdapter getAdapter() {
+        return myAdapter;
+    }
+
+    public List<Event> getFavoritesList() {
+        return myAdapter.getFavoritesList();
+    }
+
     private void setupTabIcons() {
         int iconSizeInDp = 70;
 
-        // Convert dp to pixels
         int iconSizeInPx = (int) TypedValue.applyDimension(
                 TypedValue.COMPLEX_UNIT_DIP,
                 iconSizeInDp,
@@ -70,16 +79,14 @@ public class MainActivity extends AppCompatActivity {
                 tab.setText(null);
                 tab.setIcon(tabIcons[i]);
 
-                // Get the LinearLayout that contains the ImageView
                 LinearLayout layout = (LinearLayout) tab.view;
                 ImageView imageView = (ImageView) layout.getChildAt(0);
 
-                // Set custom size for the ImageView
                 LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                         iconSizeInPx,
                         iconSizeInPx
                 );
-                params.setMargins(0, 10, 0, 10); // Add some vertical padding
+                params.setMargins(0, 10, 0, 10);
                 imageView.setLayoutParams(params);
                 imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
             }

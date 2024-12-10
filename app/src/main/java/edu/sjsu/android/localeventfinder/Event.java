@@ -17,6 +17,9 @@ public class Event implements Parcelable {
     private final String description;
     private double latitude;
     private double longitude;
+    private boolean isFavorite;
+
+
 
     public Event(String imageUrl, String eventName, String location, String date, String description, double latitude, double longitude) {
         this.imageUrl = imageUrl;
@@ -82,6 +85,10 @@ public class Event implements Parcelable {
     public int describeContents() {
         return 0;
     }
+
+    public boolean isFavorite() {return isFavorite;}
+
+    public void setFavorite(boolean favorite) {isFavorite = favorite;}
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
