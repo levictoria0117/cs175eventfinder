@@ -59,7 +59,9 @@ public class LoginActivity extends AppCompatActivity {
         if (isAuthenticated) {
             Toast.makeText(this, "Login Successful!", Toast.LENGTH_SHORT).show();
 
+            // Pass user email to MainActivity
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+            intent.putExtra("USER_EMAIL", email);
             startActivity(intent);
         } else {
             Toast.makeText(this, "Invalid email or password. Please try again.", Toast.LENGTH_SHORT).show();

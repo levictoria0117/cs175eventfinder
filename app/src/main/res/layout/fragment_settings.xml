@@ -46,14 +46,14 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:background="@drawable/account_icon_black" />
-        <TextView
+        <EditText
             android:id="@+id/name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
             android:text="John Doe"
             android:textColor="@color/black"
-            android:textSize="16sp" />
+            android:textSize="16sp"/>
     </LinearLayout>
 
     <LinearLayout
@@ -70,13 +70,14 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:background="@drawable/home_icn" />
-        <TextView
+        <EditText
+            android:id="@+id/address"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
             android:text="123 Main St. San Jose, CA, 95126"
             android:textColor="@color/black"
-            android:textSize="16sp" />
+            android:textSize="16sp"/>
     </LinearLayout>
 
     <LinearLayout
@@ -86,21 +87,30 @@
         android:layout_marginTop="20dp"
         android:layout_marginLeft="20dp"
         android:gravity="center_vertical">
-
         <View
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:background="@drawable/phone_icon" />
-        <TextView
+        <EditText
+            android:id="@+id/phone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
             android:text="(125) 456 - 7890"
             android:textColor="@color/black"
-            android:textSize="16sp" />
+            android:textSize="16sp"/>
     </LinearLayout>
+
+    <Button
+        android:id="@+id/save_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="35dp"
+        android:textAlignment="center"
+        android:layout_marginTop="16dp"
+        android:text="Save" />
 
     <TextView
         android:layout_width="wrap_content"

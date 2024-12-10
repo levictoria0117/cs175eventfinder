@@ -21,7 +21,13 @@ public class SignUpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
+        Button signIn = findViewById(R.id.button_sign_in);
         Button guest = findViewById(R.id.guest_button);
+
+        signIn.setOnClickListener(v -> {
+            Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
+            startActivity(intent);
+        });
 
         View.OnClickListener navigateToMain = v -> {
             Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
@@ -45,6 +51,8 @@ public class SignUpActivity extends AppCompatActivity {
         String lName = lastNameEditText != null ? lastNameEditText.getText().toString().trim() : "";
         String email = emailEditText != null ? emailEditText.getText().toString().trim() : "";
         String password = passwordEditText != null ? passwordEditText.getText().toString().trim() : "";
+        String address = "Add Address";
+        String phone = "Add Phone";
 
         if (email.isEmpty() || password.isEmpty()) {
             Toast.makeText(this, "Email and Password are required to sign up.", Toast.LENGTH_SHORT).show();
@@ -52,15 +60,15 @@ public class SignUpActivity extends AppCompatActivity {
         }
 
         if (userDatabaseHelper.checkEmail(email)) {
-            Toast.makeText(this, "This Email already has an account. Try Logging in.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "This Email already has an account. Try Logging in.", Toast.LENGTH_LONG).show();
         } else {
-            boolean isInserted = userDatabaseHelper.insertData(email, password, fName, lName);
+            boolean isInserted = userDatabaseHelper.insertData(email, password, fName, lName, address, phone);
             if (isInserted) {
                 Toast.makeText(this, "Sign Up Successful!", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                 startActivity(intent);
             } else {
-                Toast.makeText(this, "Sign Up Failed. Please try again.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Sign Up Failed. Please try again.", Toast.LENGTH_LONG).show();
             }
         }
 
