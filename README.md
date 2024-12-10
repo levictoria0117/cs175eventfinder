@@ -1,5 +1,9 @@
 # Around U - Local Event Finder App
 
+<div align="center">
+  <img src="app/src/main/res/drawable/logo.png" alt="Around U Logo" width="60%"/>
+</div>
+
 ## Project Submission Guide
 
 ### Application Details
