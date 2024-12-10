@@ -5,30 +5,35 @@ import android.os.Parcelable;
 
 import androidx.annotation.NonNull;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 public class Event implements Parcelable {
 
-    private final int imageID;
-    private final int eventNameID;
-    private final int locationID;
-    private final int dateID;
-    private final int descriptionID;
+    private final String imageUrl; // Change to String for URL
+    private final String eventName;
+    private final String location;
+    private final String date;
+    private final String description;
     private double latitude;
     private double longitude;
 
-    public Event(int imageID, int eventNameID, int locationID, int dateID, int descriptionID) {
-        this.imageID = imageID;
-        this.eventNameID = eventNameID;
-        this.locationID = locationID;
-        this.dateID = dateID;
-        this.descriptionID = descriptionID;
+    public Event(String imageUrl, String eventName, String location, String date, String description, double latitude, double longitude) {
+        this.imageUrl = imageUrl;
+        this.eventName = eventName;
+        this.location = location;
+        this.date = date;
+        this.description = description;
+        this.latitude = latitude;
+        this.longitude = longitude;
     }
 
     protected Event(Parcel in) {
-        imageID = in.readInt();
-        eventNameID = in.readInt();
-        locationID = in.readInt();
-        dateID = in.readInt();
-        descriptionID = in.readInt();
+        imageUrl = in.readString();
+        eventName = in.readString();
+        location = in.readString();
+        date = in.readString();
+        description = in.readString();
         latitude = in.readDouble();
         longitude = in.readDouble();
     }
@@ -45,24 +50,32 @@ public class Event implements Parcelable {
         }
     };
 
-    public int getImageID() {
-        return imageID;
+    public String getImageUrl() {
+        return imageUrl;
     }
 
-    public int getEventNameID() {
-        return eventNameID;
+    public String getEventName() {
+        return eventName;
     }
 
-    public int getLocationID() {
-        return locationID;
+    public String getLocation() {
+        return location;
     }
 
-    public int getDateID() {
-        return dateID;
+    public String getDate() {
+        return date;
     }
 
-    public int getDescriptionID() {
-        return descriptionID;
+    public String getDescription() {
+        return description;
+    }
+
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
     }
 
     @Override
@@ -70,19 +83,14 @@ public class Event implements Parcelable {
         return 0;
     }
 
-    public double getLatitude() { return latitude; }
-
-    public double getLongitude() { return longitude; }
-
     @Override
-    public void writeToParcel(@NonNull Parcel parcel, int i) {
-        parcel.writeInt(imageID);
-        parcel.writeInt(eventNameID);
-        parcel.writeInt(locationID);
-        parcel.writeInt(dateID);
-        parcel.writeInt(descriptionID);
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(imageUrl);
+        parcel.writeString(eventName);
+        parcel.writeString(location);
+        parcel.writeString(date);
+        parcel.writeString(description);
         parcel.writeDouble(latitude);
         parcel.writeDouble(longitude);
-
     }
 }
