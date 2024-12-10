@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph">
+
+    <fragment
+        android:id="@+id/ticketsFragment"
+        android:name="edu.sjsu.android.localeventfinder.TicketsFragment"
+        android:label="TicketsFragment">
+        <action
+            android:id="@+id/action_tickets_to_detail"
+            app:destination="@id/ticketDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/ticketDetailFragment"
+        android:name="edu.sjsu.android.localeventfinder.TicketDetailFragment"
+        android:label="TicketDetailFragment">
+        <argument
+            android:name="event"
+            app:argType="edu.sjsu.android.localeventfinder.Event" />
+    </fragment>
+
+</navigation>
+
+    <!--<?xml version="1.0" encoding="utf-8"?>-->
+    <!--<navigation xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
+    <!--    xmlns:tools="http://schemas.android.com/tools"-->
+    <!--    android:id="@+id/nav_graph"-->
+    <!--    app:startDestination="@id/ticketsFragment">-->
+
+    <!--    &lt;!&ndash; Tickets List Fragment &ndash;&gt;-->
+    <!--    <fragment-->
+    <!--        android:id="@+id/ticketsFragment"-->
+    <!--        android:name="edu.sjsu.android.localeventfinder.TicketsFragment"-->
+    <!--        android:label="Tickets"-->
+    <!--        tools:layout="@layout/fragment_tickets">-->
+
+    <!--        <action-->
+    <!--            android:id="@+id/action_ticketsFragment_to_ticketDetailFragment"-->
+    <!--            app:destination="@id/ticketDetailFragment" />-->
+    <!--    </fragment>-->
+
+    <!--    &lt;!&ndash; Ticket Detail Fragment &ndash;&gt;-->
+    <!--    <fragment-->
+    <!--        android:id="@+id/ticketDetailFragment"-->
+    <!--        android:name="edu.sjsu.android.localeventfinder.TicketDetailFragment"-->
+    <!--        android:label="Ticket Detail"-->
+    <!--        tools:layout="@layout/fragment_ticket_detail">-->
+
+    <!--        <argument-->
+    <!--            android:name="event"-->
+    <!--            app:argType="edu.sjsu.android.localeventfinder.Event" />-->
+
+    <!--        <deepLink-->
+    <!--            android:id="@+id/deepLink"-->
+    <!--            app:uri="localeventfinder://ticketdetail/{eventId}" />-->
+    <!--    </fragment>-->
+
+    <!--</navigation>-->

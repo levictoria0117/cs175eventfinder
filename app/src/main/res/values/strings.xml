@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">LocalEventFinder</string>
+    <string name="argument_key">my_ticket</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="home">Home</string>
@@ -35,8 +36,10 @@
     <string name="event_desc_3">Three days of jazz, blues, and more featuring both legendary performers and emerging artists.</string>
     <string name="event_desc_4">The Bay Area\'s premier comic and entertainment convention featuring celebrity guests, panels, and exhibits.</string>
     <string name="event_desc_5">Coldplay returns to the Bay Area with their spectacular Music of the Spheres World Tour.</string>
+    <string name="ticketsPageTitle">Tickets</string>
+    <string name="ticket_detail">Ticket Detail</string>
     <string name="google_maps_api_key">AIzaSyCig3hj3xbbBNHp0AkLLKATy1ANFQb6_DI</string>
-
+  
     <!-- Sorting -->
     <string-array name="sort_options">
         <item>Date (newest first)</item>
@@ -44,4 +47,10 @@
         <item>Name (A-Z)</item>
         <item>Name (Z-A)</item>
     </string-array>
+  
+    <string name="order_id">Order ID</string>
+    <string name="name">Name</string>
+    <string name="date">Date</string>
+    <string name="time">Time</string>
+  
 </resources>

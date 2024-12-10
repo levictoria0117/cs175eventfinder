@@ -1,6 +1,7 @@
 package edu.sjsu.android.localeventfinder;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -10,7 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import java.util.ArrayList;
 
-public class FavoritesFragment extends Fragment implements OnEventCardClickedListener {
+public class FavoritesFragment extends Fragment {
 
     private ArrayList<Event> favoriteEventList;
     private RecyclerView recyclerView;
@@ -44,22 +45,15 @@ public class FavoritesFragment extends Fragment implements OnEventCardClickedLis
         // Initialize the adapter with the event list and set click listener
         adapter = new MyAdapter(favoriteEventList, false);
         // Assuming MyAdapter has a method to set the click listener
-        // adapter.setOnEventCardClickedListener(this);
+         adapter.setOnEventCardClickedListener(position -> {
+             Event event = favoriteEventList.get(position);
+             Intent intent = new Intent(getContext(), EventDetailFragmentActivity.class);
+             intent.putExtra("event", event);
+             startActivity(intent);
+         });
 
         recyclerView.setAdapter(adapter);
 
         return view;
-    }
-
-    @Override
-    public void onClick(int position) {
-        if (position != favoriteEventList.size() - 1) {
-            goDetail(position);
-        }
-    }
-
-    private void goDetail(int position) {
-        System.out.print("Detail");
-        // Implement your detail view navigation logic here
     }
 }
