@@ -99,6 +99,10 @@ The following features are planned for future releases:
 The comprehensive final report can be found at:
 https://docs.google.com/document/d/1Y728B0BpB2gObv7VqLz4e48yApqTrybda85W1OuunYs/edit?usp=sharing
 
+#### User Guid
+The user guide can be found at:
+https://drive.google.com/file/d/1Qm_-BuMnCW34DXUlQoHU1iTLqbQusC2u/view?usp=sharing
+
 The report includes:
 - Detailed project overview
 - Technical architecture
