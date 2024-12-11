@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">LocalEventFinder</string>
+    <string name="app_name">AroundU</string>
     <string name="argument_key">my_ticket</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
