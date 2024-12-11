@@ -50,20 +50,20 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         holder.eventLocation.setText(event.getLocation());
         holder.eventDate.setText(event.getDate());
 
-        holder.favoriteButton.setColorFilter(event.isFavorite() ? Color.parseColor("#FF9800") : Color.parseColor("#B0BEC5"));
-
-        holder.favoriteButton.setOnClickListener(v -> {
-            event.setFavorite(!event.isFavorite());
-            if (event.isFavorite()) {
-                holder.favoriteButton.setColorFilter(Color.parseColor("#FF9800"));
-                if (!favoritesList.contains(event)) {
-                    favoritesList.add(event);
-                }
-            } else {
-                holder.favoriteButton.setColorFilter(Color.parseColor("#B0BEC5"));
-                favoritesList.remove(event);
-            }
-        });
+//        holder.favoriteButton.setColorFilter(event.isFavorite() ? Color.parseColor("#FF9800") : Color.parseColor("#B0BEC5"));
+//
+//        holder.favoriteButton.setOnClickListener(v -> {
+//            event.setFavorite(!event.isFavorite());
+//            if (event.isFavorite()) {
+//                holder.favoriteButton.setColorFilter(Color.parseColor("#FF9800"));
+//                if (!favoritesList.contains(event)) {
+//                    favoritesList.add(event);
+//                }
+//            } else {
+//                holder.favoriteButton.setColorFilter(Color.parseColor("#B0BEC5"));
+//                favoritesList.remove(event);
+//            }
+//        });
 
         holder.itemView.setOnClickListener(v -> {
             if (clickListener != null) {
@@ -86,7 +86,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         public final TextView eventName;
         public final TextView eventLocation;
         public final TextView eventDate;
-        public final ImageButton favoriteButton;
+//        public final ImageButton favoriteButton;
 
         public ViewHolder(View view) {
             super(view);
@@ -94,7 +94,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
             eventName = view.findViewById(R.id.event_name);
             eventLocation = view.findViewById(R.id.event_location);
             eventDate = view.findViewById(R.id.event_date);
-            favoriteButton = view.findViewById(R.id.favorite_button);
+//            favoriteButton = view.findViewById(R.id.favorite_button);
         }
     }
 }

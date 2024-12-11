@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.content.Intent;
 import android.content.SharedPreferences;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -79,18 +80,18 @@ public class SettingsFragment extends Fragment {
         TextView logoutButton = view.findViewById(R.id.logout_button);
         logoutButton.setOnClickListener(v -> handleLogout());
 
-        // Other buttons (Change Email, Change Password)
-        TextView changeEmailButton = view.findViewById(R.id.change_email_button);
-        changeEmailButton.setOnClickListener(v -> {
-            // Logic for changing email
-            // Placeholder: Add navigation or functionality here
-        });
-
-        TextView changePasswordButton = view.findViewById(R.id.change_password_button);
-        changePasswordButton.setOnClickListener(v -> {
-            // Logic for changing password
-            // Placeholder: Add navigation or functionality here
-        });
+//        // Other buttons (Change Email, Change Password)
+//        TextView changeEmailButton = view.findViewById(R.id.change_email_button);
+//        changeEmailButton.setOnClickListener(v -> {
+//            // Logic for changing email
+//            // Placeholder: Add navigation or functionality here
+//        });
+//
+//        TextView changePasswordButton = view.findViewById(R.id.change_password_button);
+//        changePasswordButton.setOnClickListener(v -> {
+//            // Logic for changing password
+//            // Placeholder: Add navigation or functionality here
+//        });
 
         return view;
     }
@@ -109,4 +110,5 @@ public class SettingsFragment extends Fragment {
         // End the current activity (if necessary)
         requireActivity().finish();
     }
+
 }

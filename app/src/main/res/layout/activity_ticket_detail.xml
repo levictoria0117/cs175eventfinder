@@ -48,9 +48,10 @@
                 android:id="@+id/eventImageView"
                 android:layout_width="match_parent"
                 android:layout_height="221dp"
+                android:background="@drawable/rounded_image"
+                android:clipToOutline="true"
                 android:contentDescription="Event Image"
                 android:scaleType="centerCrop"
-                android:background="@drawable/rounded_image"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -90,18 +91,7 @@
                 tools:layout_editor_absoluteX="16dp" />
 
             <TextView
-                android:id="@+id/orderIdLabel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="@string/order_id"
-                android:textStyle="bold"
-                android:textSize="14sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/divider1" />
-
-            <TextView
-                android:id="@+id/orderIdTextView"
+                android:id="@+id/ticket_orderId"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
@@ -109,28 +99,6 @@
                 android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="@id/orderIdLabel"
                 app:layout_constraintTop_toBottomOf="@id/orderIdLabel" />
-
-            <TextView
-                android:id="@+id/nameTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:textColor="@android:color/black"
-                android:textSize="16sp"
-                app:layout_constraintStart_toStartOf="@id/nameLabel"
-                app:layout_constraintTop_toBottomOf="@id/nameLabel" />
-
-            <TextView
-                android:id="@+id/timeLabel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="184dp"
-                android:layout_marginTop="4dp"
-                android:text="@string/time"
-                android:textSize="14sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@id/dateLabel" />
 
             <TextView
                 android:id="@+id/dateLabel"
@@ -142,21 +110,21 @@
                 android:textSize="14sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/orderIdTextView" />
+                app:layout_constraintTop_toBottomOf="@id/divider1" />
 
             <TextView
-                android:id="@+id/nameLabel"
+                android:id="@+id/orderIdLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="184dp"
-                android:text="@string/name"
+                android:text="@string/order_id"
                 android:textSize="14sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@id/orderIdLabel" />
+                app:layout_constraintTop_toTopOf="@id/dateLabel" />
 
             <TextView
-                android:id="@+id/dateTextView"
+                android:id="@+id/ticket_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
@@ -164,26 +132,6 @@
                 android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="@id/dateLabel"
                 app:layout_constraintTop_toBottomOf="@id/dateLabel" />
-
-            <TextView
-                android:id="@+id/timeTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:textColor="@android:color/black"
-                android:textSize="16sp"
-                app:layout_constraintStart_toStartOf="@id/timeLabel"
-                app:layout_constraintTop_toBottomOf="@id/timeLabel" />
-
-            <View
-                android:id="@+id/divider2"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="16dp"
-                android:background="@drawable/dashed_line"
-                android:layerType="software"
-                app:layout_constraintTop_toBottomOf="@+id/timeTextView"
-                tools:layout_editor_absoluteX="16dp" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/seeDetailButton"
@@ -196,10 +144,10 @@
                 android:text="See Detail"
                 android:textAllCaps="false"
                 android:textColor="@color/primary"
-                app:cornerRadius="7dp"
+                app:cornerRadius="10dp"
                 app:layout_constraintEnd_toStartOf="@id/getDirectionButton"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/divider2"
+                app:layout_constraintTop_toBottomOf="@+id/ticket_orderId"
                 app:strokeColor="@color/primary" />
 
             <com.google.android.material.button.MaterialButton
@@ -207,12 +155,12 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:paddingVertical="15dp"
                 android:backgroundTint="@color/primary"
+                android:paddingVertical="15dp"
                 android:text="Get Direction"
                 android:textAllCaps="false"
                 android:textColor="@android:color/white"
-                app:cornerRadius="7dp"
+                app:cornerRadius="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/seeDetailButton"
                 app:layout_constraintTop_toTopOf="@id/seeDetailButton" />

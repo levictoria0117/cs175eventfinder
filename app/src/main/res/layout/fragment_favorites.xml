@@ -19,6 +19,15 @@
         android:textColor="@color/primary"
         android:gravity="center" />
 
+    <TextView
+        android:id="@+id/no_favorites_text"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:visibility="gone"
+        android:text="@string/no_favorites_yet" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/favorites_recycler"
         android:layout_width="match_parent"

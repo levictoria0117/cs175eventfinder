@@ -1,28 +1,27 @@
 package edu.sjsu.android.localeventfinder;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-
 import androidx.fragment.app.Fragment;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import java.util.ArrayList;
+import java.util.List;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
+import android.widget.TextView;
 
 public class TicketsFragment extends Fragment {
 
     private RecyclerView ticketsRecyclerView;
     private TicketAdapter ticketsAdapter;
     private ArrayList<Event> ticketList;
+    private EventDatabaseHelper eventDatabaseHelper;
+    private TextView noTicketsText;
 
     public TicketsFragment() {
         // Required empty public constructor
@@ -31,11 +30,75 @@ public class TicketsFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Initialize database helper
+        eventDatabaseHelper = new EventDatabaseHelper(getContext());
+
+        // Initialize ticket list
         ticketList = new ArrayList<>();
 
-        ticketList.add(new Event("https://example.com/event_image_1.jpg", "Event Name 5", "Event Location 5", "2024-12-09", "Event Description 5", 37.7749, -122.4194));
-        ticketList.add(new Event("https://example.com/event_image_2.jpg", "Event Name 2", "Event Location 2", "2024-12-10", "Event Description 2", 34.0522, -118.2437));
-        ticketList.add(new Event("https://example.com/event_image_3.jpg", "Event Name 3", "Event Location 3", "2024-12-11", "Event Description 3", 40.7128, -74.0060));
+        // Load registered events from database
+        loadRegisteredEvents();
+    }
+
+    private void loadRegisteredEvents() {
+        // Query database for events where registered is true
+        SQLiteDatabase db = eventDatabaseHelper.getReadableDatabase();
+        String selectQuery = "SELECT * FROM events WHERE registered = true";
+
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        ticketList.clear();
+
+        if (cursor.moveToFirst()) {
+            int idIndex = cursor.getColumnIndexOrThrow("id");
+            int imageUrlIndex = cursor.getColumnIndexOrThrow("image_url");
+            int nameIndex = cursor.getColumnIndexOrThrow("name");
+            int locationIndex = cursor.getColumnIndexOrThrow("location");
+            int dateIndex = cursor.getColumnIndexOrThrow("date");
+            int descriptionIndex = cursor.getColumnIndexOrThrow("description");
+            int latitudeIndex = cursor.getColumnIndexOrThrow("latitude");
+            int longitudeIndex = cursor.getColumnIndexOrThrow("longitude");
+            int favoriteIndex = cursor.getColumnIndexOrThrow("favorite");
+
+            do {
+                Event event = new Event(
+                        cursor.getString(imageUrlIndex),
+                        cursor.getString(nameIndex),
+                        cursor.getString(locationIndex),
+                        cursor.getString(dateIndex),
+                        cursor.getString(descriptionIndex),
+                        cursor.getDouble(latitudeIndex),
+                        cursor.getDouble(longitudeIndex),
+                        cursor.getInt(favoriteIndex) == 1,
+                        true  // We know it's registered since we queried for registered=1
+                );
+                event.setId(cursor.getLong(idIndex));
+                ticketList.add(event);
+            } while (cursor.moveToNext());
+        }
+
+        cursor.close();
+
+        // Notify adapter if it's initialized
+        if (ticketsAdapter != null) {
+            ticketsAdapter.notifyDataSetChanged();
+        }
+
+        // Update empty state message if view is created
+        updateEmptyState();
+
+    }
+
+    private void updateEmptyState() {
+        if (noTicketsText != null) {
+            if (ticketList.isEmpty()) {
+                noTicketsText.setVisibility(View.VISIBLE);
+                ticketsRecyclerView.setVisibility(View.GONE);
+            } else {
+                noTicketsText.setVisibility(View.GONE);
+                ticketsRecyclerView.setVisibility(View.VISIBLE);
+            }
+        }
     }
 
     @Override
@@ -44,9 +107,12 @@ public class TicketsFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_tickets, container, false);
 
         ticketsRecyclerView = view.findViewById(R.id.ticket_recycler_view);
+        noTicketsText = view.findViewById(R.id.no_tickets_text);
+
         ticketsRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         ticketsAdapter = new TicketAdapter(ticketList);
         ticketsRecyclerView.setAdapter(ticketsAdapter);
+
         ticketsAdapter.setOnEventCardClickedListener(position -> {
             Event event = ticketList.get(position);
             Intent intent = new Intent(getContext(), TicketDetailActivity.class);
@@ -55,5 +121,21 @@ public class TicketsFragment extends Fragment {
         });
 
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        // Reload registered events when returning to this fragment
+        loadRegisteredEvents();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        // Close database connection
+        if (eventDatabaseHelper != null) {
+            eventDatabaseHelper.close();
+        }
     }
 }

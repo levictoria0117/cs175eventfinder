@@ -8,11 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.bumptech.glide.Glide;
 import com.google.android.material.button.MaterialButton;
@@ -48,10 +44,9 @@ public class TicketDetailActivity extends AppCompatActivity {
             ImageView eventImage = findViewById(R.id.eventImageView);
             TextView eventName = findViewById(R.id.eventNameTextView);
             TextView eventLocation = findViewById(R.id.venueTextView);
-            TextView eventTicketOrderId = findViewById(R.id.orderIdTextView);
-            TextView userName = findViewById(R.id.nameTextView);
-            TextView eventDate = findViewById(R.id.dateTextView);
-            TextView eventTime = findViewById(R.id.timeTextView);
+            TextView eventTicketOrderId = findViewById(R.id.ticket_orderId);
+//            TextView userName = findViewById(R.id.nameTextView);
+            TextView eventDate = findViewById(R.id.ticket_date);
 
             Glide.with(this)
                     .load(event.getImageUrl())
@@ -60,10 +55,9 @@ public class TicketDetailActivity extends AppCompatActivity {
             // Set text views with the event details
             eventName.setText(event.getEventName());
             eventLocation.setText(event.getLocation());
-            eventTicketOrderId.setText("#78492");
-            userName.setText("John Doe");
+            eventTicketOrderId.setText("#" + String.format("%05d", (int)(Math.random() * 100000)));
+//            userName.setText("John Doe");
             eventDate.setText(event.getDate());
-            eventTime.setText(event.getDate());
         }
     }
 
