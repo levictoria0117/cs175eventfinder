@@ -45,6 +45,10 @@ public class EventDetailFragmentActivity extends AppCompatActivity implements On
             eventDescription.setText(event.getDescription());
         }
 
+        // Set up the back button
+        ImageView backButton = findViewById(R.id.backButton);
+        backButton.setOnClickListener(v -> finish());
+
         // Initialize and set up the map
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         if (mapFragment != null) {

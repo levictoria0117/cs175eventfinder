@@ -41,22 +41,49 @@
         android:id="@+id/event_image"
         android:layout_width="match_parent"
         android:layout_height="250dp"
+        android:background="@drawable/rounded_image"
+        android:clipToOutline="true"
+        android:contentDescription="Event image"
         android:scaleType="centerCrop" />
 
-    <TextView
-        android:id="@+id/event_name"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:layout_marginTop="16dp"/>
+        android:orientation="horizontal"
+        android:gravity="top">
+
+        <TextView
+            android:id="@+id/event_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="10dp"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/getDirectionButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:paddingVertical="5dp"
+            android:backgroundTint="@color/primary"
+            android:text="Register"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white"
+            android:layout_marginTop="16dp"
+            app:cornerRadius="7dp"/>
+
+    </LinearLayout>
+
 
     <TextView
         android:id="@+id/event_location"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="16sp"
-        android:layout_marginTop="8dp"/>
+        android:layout_marginTop="10dp"/>
 
     <TextView
         android:id="@+id/event_date"
@@ -66,15 +93,26 @@
         android:layout_marginTop="8dp"/>
 
     <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:layout_marginTop="20dp"
+        android:text="Description" />
+
+    <TextView
         android:id="@+id/event_description"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
         android:textSize="16sp"
-        android:layout_marginTop="16dp" />
+        android:layout_marginTop="10dp" />
 
     <fragment
         android:id="@+id/map"
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
+        android:background="@drawable/rounded_edges"
         android:layout_height="300dp" />
 </LinearLayout>

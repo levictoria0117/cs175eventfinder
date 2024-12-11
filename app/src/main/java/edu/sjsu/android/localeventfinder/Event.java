@@ -19,8 +19,6 @@ public class Event implements Parcelable {
     private double longitude;
     private boolean isFavorite;
 
-
-
     public Event(String imageUrl, String eventName, String location, String date, String description, double latitude, double longitude) {
         this.imageUrl = imageUrl;
         this.eventName = eventName;

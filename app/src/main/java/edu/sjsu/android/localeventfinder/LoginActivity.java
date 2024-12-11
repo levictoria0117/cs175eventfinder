@@ -79,24 +79,38 @@ public class LoginActivity extends AppCompatActivity {
             if (isAuthenticated) {
                 Toast.makeText(this, "Login Successful!", Toast.LENGTH_SHORT).show();
 
-                // Pass user email to MainActivity
-                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                intent.putExtra("USER_EMAIL", email);
-                startActivity(intent);
-              
+//                // Pass user email to MainActivity
+//                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+//                intent.putExtra("USER_EMAIL", email);
+//                startActivity(intent);
+//
+//                // Save "Keep Me Signed In" preference
+//                if (keepSignedInCheckbox.isChecked()) {
+//                    SharedPreferences.Editor editor = sharedPreferences.edit();
+//                    editor.putBoolean("isSignedIn", true);
+//                    editor.apply();
+//                }
+
                 // Save "Keep Me Signed In" preference
                 if (keepSignedInCheckbox.isChecked()) {
                     SharedPreferences.Editor editor = sharedPreferences.edit();
                     editor.putBoolean("isSignedIn", true);
+                    editor.putString("USER_EMAIL", email);
                     editor.apply();
                 }
 
-                navigateToMainActivity();
-            } else {
+                // Navigate to MainActivity with user email
                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                 intent.putExtra("USER_EMAIL", email);
                 startActivity(intent);
-//                Toast.makeText(this, "Invalid email or password. Please try again.", Toast.LENGTH_SHORT).show();
+                finish();
+
+//                navigateToMainActivity();
+            } else {
+//                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+//                intent.putExtra("USER_EMAIL", email);
+//                startActivity(intent);
+                Toast.makeText(this, "Invalid email or password. Please try again.", Toast.LENGTH_SHORT).show();
             }
         } catch (Exception e) {
             Toast.makeText(this, "An error occurred during login. Please try again.", Toast.LENGTH_SHORT).show();

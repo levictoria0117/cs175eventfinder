@@ -25,12 +25,18 @@ public class UserDatabaseHelper extends SQLiteOpenHelper {
     private static final String COL_PHONE = "phone";
 
     public UserDatabaseHelper(@Nullable Context context) {
-        super(context, DATABASE_NAME, null, 2);
+        super(context, DATABASE_NAME, null, 3);
     }
 
     @Override
     public void onCreate(SQLiteDatabase MyDatabase) {
-        MyDatabase.execSQL("create table allusers(email TEXT PRIMARY KEY, password TEXT, fName TEXT, lName TEXT, address TEXT, phone TEXT)");
+        MyDatabase.execSQL("CREATE TABLE " + TABLE_NAME + " (" +
+                COL_EMAIL + " TEXT PRIMARY KEY, " +
+                COL_PASSWORD + " TEXT, " +
+                COL_FNAME + " TEXT, " +
+                COL_LNAME + " TEXT, " +
+                COL_ADDRESS + " TEXT, " +
+                COL_PHONE + " TEXT)");
     }
 
     // not used
@@ -50,7 +56,7 @@ public class UserDatabaseHelper extends SQLiteOpenHelper {
   
         // Insert user data
         contentValues.put(COL_EMAIL, email);
-        contentValues.put(COL_PASSWORD, password);
+        contentValues.put(COL_PASSWORD, hashedPassword);
         contentValues.put(COL_FNAME, fName);
         contentValues.put(COL_LNAME, lName);
         contentValues.put(COL_ADDRESS, address);
@@ -62,6 +68,8 @@ public class UserDatabaseHelper extends SQLiteOpenHelper {
         } catch (Exception e) {
             Log.e("UserDatabaseHelper", "Error inserting data", e);
             return false;
+        } finally {
+            MyDatabase.close();
         }
     }
 

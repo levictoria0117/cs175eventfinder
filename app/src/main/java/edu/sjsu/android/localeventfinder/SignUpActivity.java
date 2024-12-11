@@ -2,6 +2,7 @@ package edu.sjsu.android.localeventfinder;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -23,21 +24,7 @@ public class SignUpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
-        Button signIn = findViewById(R.id.button_sign_in);
-        Button guest = findViewById(R.id.guest_button);
-
-        signIn.setOnClickListener(v -> {
-            Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
-            startActivity(intent);
-        });
-
-        View.OnClickListener navigateToMain = v -> {
-            Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
-            startActivity(intent);
-        };
-
-        guest.setOnClickListener(navigateToMain);
-
+        // Initialize database helper only once
         userDatabaseHelper = new UserDatabaseHelper(this);
 
         // Initialize UI elements
@@ -46,18 +33,18 @@ public class SignUpActivity extends AppCompatActivity {
         emailEditText = (TextInputEditText) ((TextInputLayout) findViewById(R.id.email)).getEditText();
         passwordEditText = (TextInputEditText) ((TextInputLayout) findViewById(R.id.password)).getEditText();
 
-        userDatabaseHelper = new UserDatabaseHelper(this);
-
+        // Set up buttons
         Button signUpButton = findViewById(R.id.signup_button);
+        Button signInButton = findViewById(R.id.button_sign_in);
+        Button guestButton = findViewById(R.id.guest_button);
+
         signUpButton.setOnClickListener(view -> handleSignUp());
 
-        Button signInButton = findViewById(R.id.button_sign_in);
         signInButton.setOnClickListener(v -> {
             Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
             startActivity(intent);
         });
 
-        Button guestButton = findViewById(R.id.guest_button);
         guestButton.setOnClickListener(v -> {
             Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
             startActivity(intent);
@@ -104,6 +91,7 @@ public class SignUpActivity extends AppCompatActivity {
                 Toast.makeText(this, "Sign Up Failed. Please try again.", Toast.LENGTH_LONG).show();
             }
         }
+
     }
 
     // Email validation
