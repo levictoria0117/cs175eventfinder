@@ -17,6 +17,7 @@
         tools:targetApi="31">
         <activity
             android:name=".TicketDetailActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
 
         <meta-data
@@ -25,15 +26,19 @@
 
         <activity
             android:name=".SignUpActivity"
+            android:screenOrientation="portrait"
             android:exported="true" />
         <activity
             android:name=".LoginActivity"
+            android:screenOrientation="portrait"
             android:exported="true" />
         <activity
             android:name=".MainActivity"
+            android:screenOrientation="portrait"
             android:exported="true" />
         <activity
             android:name=".LandingPageActivity"
+            android:screenOrientation="portrait"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -43,10 +48,12 @@
         </activity>
 
         <activity
-            android:name=".EventDetailFragmentActivity">
+            android:name=".EventDetailFragmentActivity"
+            android:screenOrientation="portrait">
         </activity>
         <activity android:name=".SearchActivity"
             android:label="Search Events"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.LocalEventFinder" />
 
     </application>
